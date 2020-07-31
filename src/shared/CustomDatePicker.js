@@ -1,7 +1,4 @@
 import React, {useState} from 'react';
-import {
-    StyleSheet
-} from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 export const CustomDatePicker = ({style, show}) => {
@@ -28,15 +25,3 @@ export const CustomDatePicker = ({style, show}) => {
 };
 
 export default CustomDatePicker;
-
-const styles = StyleSheet.create({
-    input: {
-        height: 40,
-        width: 200,
-        borderColor: 'gray',
-        borderRadius: 50,
-        borderWidth: 1,
-        marginBottom: 30,
-        paddingLeft: 20
-    },
-});

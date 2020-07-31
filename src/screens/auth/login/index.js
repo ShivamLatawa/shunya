@@ -21,7 +21,6 @@ const LoginScreen = ({navigation}) => (
 
         <TouchableOpacity
             style={styles.loginBtn}>
-
             <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
 

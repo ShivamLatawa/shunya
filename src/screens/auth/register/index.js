@@ -81,7 +81,7 @@ const RegisterScreen = ({navigation}) => {
 
         </SafeAreaView>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -153,37 +153,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
 });
-
-const pickerStyle = {
-    inputIOS: {
-        color: 'white',
-        paddingTop: 13,
-        paddingHorizontal: 10,
-        paddingBottom: 12,
-        width: 200
-    },
-    inputAndroid: {
-        color: 'white',
-        width: 200
-    },
-    placeholderColor: 'white',
-    underline: {borderTopWidth: 0},
-    icon: {
-        position: 'absolute',
-        backgroundColor: 'transparent',
-        borderTopWidth: 5,
-        borderTopColor: '#00000099',
-        borderRightWidth: 5,
-        borderRightColor: 'transparent',
-        borderLeftWidth: 5,
-        borderLeftColor: 'transparent',
-        width: 0,
-        height: 0,
-        top: 20,
-        right: 15,
-    },
-};
-
 
 export default RegisterScreen;
 
