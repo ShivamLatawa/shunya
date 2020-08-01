@@ -6,7 +6,6 @@ const API_BASE_URL = "<domain:port>";
 
 
 export const client = async (url, method, body) => {
-
     try {
         const response = await fetch(`${API_BASE_URL}/${url}`, {
             method,
