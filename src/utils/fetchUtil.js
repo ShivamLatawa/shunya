@@ -17,7 +17,7 @@ export const client = async (url, method, body) => {
 
         if (!response.ok) {
             const error = await response.json();
-            return {error: error.code};
+            return Promise.reject({error: error.code});
         }
 
         return await response.json();

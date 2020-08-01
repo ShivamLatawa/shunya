@@ -20,7 +20,7 @@ const RegisterScreen = ({navigation}) => {
     const [username, setUsername] = useState();
     const [contactNumber, setContactNumber] = useState();
     const [dob, setDobInInput] = useState(new Date());
-    const [role, setRole] = useState();
+    const [role, setRole] = useState("farmer");
     const [password, setPassword] = useState();
     const [showDatePicker, setShowDatePicker] = useState(false);
 
@@ -39,10 +39,9 @@ const RegisterScreen = ({navigation}) => {
         };
 
         signUp(request)
-            .then(res => console.log("res -->", res))
+            .then(() => navigation.navigate('Home'))
             .catch(err => console.log("err -->", err));
     };
-
 
     return (
         <SafeAreaView style={styles.container}>

@@ -9,6 +9,7 @@
 import React from 'react';
 import Navigator from "./screens/navigations";
 
+
 const App: () => React$Node = () => {
     return (
         <Navigator />

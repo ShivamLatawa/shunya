@@ -1,7 +1,7 @@
 import client from "../utils/fetchUtil";
 
-const POST_METHOD = 'POST';
 
+const POST_METHOD = 'POST';
 const SIGN_UP_URL = 'app/v1/users/sign-up';
 
 
