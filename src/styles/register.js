@@ -4,14 +4,14 @@ import {Colors} from "react-native/Libraries/NewAppScreen";
 
 export const registerScreenStyles = StyleSheet.create({
     container: {
-        flex: 1,
+        paddingTop: 30,
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
     },
 
     brand: {
-        fontSize: 30,
+        fontSize: 36,
         fontWeight: 'bold',
         color: Colors.black,
         textAlign: 'center',
@@ -19,13 +19,14 @@ export const registerScreenStyles = StyleSheet.create({
     },
 
     input: {
+        flexDirection: 'row',
         height: 40,
         width: 200,
         borderColor: 'gray',
         borderRadius: 50,
         borderWidth: 1,
         marginBottom: 30,
-        paddingLeft: 20
+        paddingLeft: 15
     },
 
     dateInput: {
@@ -35,15 +36,15 @@ export const registerScreenStyles = StyleSheet.create({
         borderRadius: 50,
         borderWidth: 1,
         marginBottom: 30,
-        paddingLeft: 20,
+        paddingLeft: 15,
         flexDirection: 'row',
     },
 
     picker: {
-        width: 200,
+        width: 160,
         position: 'relative',
         bottom: 7,
-        right: 10,
+        right: 5,
     },
 
     selectWrapper: {
@@ -74,7 +75,7 @@ export const registerScreenStyles = StyleSheet.create({
 
     icon: {
         position: 'relative',
-        top: 5,
+        top: 9,
         marginRight: 10,
     },
 

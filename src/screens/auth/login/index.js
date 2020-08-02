@@ -1,23 +1,40 @@
 import React from 'react';
 import {SafeAreaView, Text, TextInput, View, TouchableOpacity} from 'react-native';
+import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
+import {faUser} from "@fortawesome/free-regular-svg-icons";
+import {faLock} from "@fortawesome/free-solid-svg-icons";
+
 import styles from "../../../styles/login";
+
 
 const LoginScreen = ({navigation}) => (
     <SafeAreaView style={styles.container}>
         <Text style={styles.brand}>Shunya</Text>
 
-        <TextInput
-            style={styles.input}
-            autoCompleteType="username"
-            placeholder="Username"
-        />
+        <View style={styles.input}>
+            <FontAwesomeIcon
+                icon={faUser}
+                size={20}
+                style={styles.icon}
+            />
+            <TextInput
+                placeholder="Username"
+                autoCompleteType="username"
+            />
+        </View>
 
-        <TextInput
-            style={styles.input}
-            autoCompleteType="password"
-            placeholder="**********"
-            secureTextEntry={true}
-        />
+        <View style={styles.input}>
+            <FontAwesomeIcon
+                icon={faLock}
+                size={20}
+                style={styles.icon}
+            />
+            <TextInput
+                autoCompleteType="password"
+                placeholder="**********"
+                secureTextEntry={true}
+            />
+        </View>
 
         <TouchableOpacity
             style={styles.loginBtn}>

@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import {format} from 'date-fns';
-import {faCalendar} from "@fortawesome/free-solid-svg-icons";
+import {faPhoneAlt, faLock} from "@fortawesome/free-solid-svg-icons";
+import {faCalendar, faUser,faIdCard} from "@fortawesome/free-regular-svg-icons";
 import {
-    SafeAreaView,
+    ScrollView,
     Text,
     TextInput,
     TouchableOpacity,
@@ -44,23 +45,36 @@ const RegisterScreen = ({navigation}) => {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.brand}>Shunya</Text>
 
-            <TextInput
-                style={styles.input}
-                placeholder="Username"
-                onChangeText={(value) => {
-                    setUsername(value)
-                }}
-            />
+            <View style={styles.input}>
+                <FontAwesomeIcon
+                    icon={faUser}
+                    size={20}
+                    style={styles.icon}
+                />
+                <TextInput
 
-            <TextInput
-                style={styles.input}
-                keyboardType="numeric"
-                placeholder="Contact Number"
-                onChangeText={(value) => setContactNumber(value)}
-            />
+                    placeholder="Username"
+                    onChangeText={(value) => {
+                        setUsername(value)
+                    }}
+                />
+            </View>
+
+            <View style={styles.input}>
+                <FontAwesomeIcon
+                    icon={faPhoneAlt}
+                    size={20}
+                    style={styles.icon}
+                />
+                <TextInput
+                    keyboardType="numeric"
+                    placeholder="Contact Number"
+                    onChangeText={(value) => setContactNumber(value)}
+                />
+            </View>
 
             <View style={styles.dateInput}>
                 <TouchableOpacity
@@ -68,7 +82,7 @@ const RegisterScreen = ({navigation}) => {
                 >
                     <FontAwesomeIcon
                         icon={faCalendar}
-                        size={25}
+                        size={20}
                         style={styles.icon}
                     />
                 </TouchableOpacity>
@@ -84,6 +98,11 @@ const RegisterScreen = ({navigation}) => {
             </View>
 
             <View style={styles.input}>
+                <FontAwesomeIcon
+                    icon={faIdCard}
+                    size={20}
+                    style={styles.icon}
+                />
                 <Picker
                     selectedValue={role}
                     style={styles.picker}
@@ -93,18 +112,30 @@ const RegisterScreen = ({navigation}) => {
                 </Picker>
             </View>
 
-            <TextInput
-                style={styles.input}
-                placeholder="Password"
-                secureTextEntry={true}
-                onChangeText={(value) => setPassword(value)}
-            />
+            <View style={styles.input}>
+                <FontAwesomeIcon
+                    icon={faLock}
+                    size={20}
+                    style={styles.icon}
+                />
+                <TextInput
+                    placeholder="Password"
+                    secureTextEntry={true}
+                    onChangeText={(value) => setPassword(value)}
+                />
+            </View>
 
-            <TextInput
-                style={styles.input}
-                placeholder="Confirm Password"
-                secureTextEntry={true}
-            />
+            <View style={styles.input}>
+                <FontAwesomeIcon
+                    icon={faLock}
+                    size={20}
+                    style={styles.icon}
+                />
+                <TextInput
+                    placeholder="Confirm Password"
+                    secureTextEntry={true}
+                />
+            </View>
 
             <TouchableOpacity
                 style={styles.signUpBtn}
@@ -122,7 +153,7 @@ const RegisterScreen = ({navigation}) => {
                     <Text style={styles.login}>Login</Text>
                 </TouchableOpacity>
             </View>
-        </SafeAreaView>
+        </ScrollView>
     );
 };
 

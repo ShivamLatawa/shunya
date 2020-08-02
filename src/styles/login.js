@@ -11,7 +11,7 @@ const loginScreenStyles = StyleSheet.create({
     },
 
     brand: {
-        fontSize: 30,
+        fontSize: 36,
         fontWeight: 'bold',
         color: Colors.black,
         textAlign: 'center',
@@ -19,13 +19,20 @@ const loginScreenStyles = StyleSheet.create({
     },
 
     input: {
+        flexDirection: 'row',
         height: 40,
         width: 200,
         borderColor: 'gray',
         borderRadius: 50,
         borderWidth: 1,
         marginBottom: 30,
-        paddingLeft: 20
+        paddingLeft: 15,
+    },
+
+    icon: {
+        position: 'relative',
+        top: 9,
+        marginRight: 10,
     },
 
     loginBtn: {
