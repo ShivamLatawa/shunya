@@ -1,45 +1,24 @@
 import React from 'react';
-import {SafeAreaView, Text, TextInput, View, TouchableOpacity} from 'react-native';
-import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
+import {SafeAreaView, Text, View, TouchableOpacity} from 'react-native';
 import {faUser} from "@fortawesome/free-regular-svg-icons";
 import {faLock} from "@fortawesome/free-solid-svg-icons";
 
+import CustomTextInput from "../../../shared/CustomTextInput";
+import CustomButton from "../../../shared/CustomButton";
+
 import styles from "../../../styles/login";
+import brandStyles from "../../../styles/brand";
 
 
 const LoginScreen = ({navigation}) => (
     <SafeAreaView style={styles.container}>
-        <Text style={styles.brand}>Shunya</Text>
+        <Text style={brandStyles.brand}>Shunya</Text>
 
-        <View style={styles.input}>
-            <FontAwesomeIcon
-                icon={faUser}
-                size={20}
-                style={styles.icon}
-            />
-            <TextInput
-                placeholder="Username"
-                autoCompleteType="username"
-            />
-        </View>
+        <CustomTextInput icon={faUser} placeholder="Username"/>
 
-        <View style={styles.input}>
-            <FontAwesomeIcon
-                icon={faLock}
-                size={20}
-                style={styles.icon}
-            />
-            <TextInput
-                autoCompleteType="password"
-                placeholder="**********"
-                secureTextEntry={true}
-            />
-        </View>
+        <CustomTextInput icon={faLock} placeholder="**********" secureTextEntry={true}/>
 
-        <TouchableOpacity
-            style={styles.loginBtn}>
-            <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
+        <CustomButton text="Login"/>
 
         <View style={styles.createAccountWrapper}>
             <Text style={styles.newAccountText}>

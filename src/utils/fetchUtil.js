@@ -6,7 +6,9 @@ const API_BASE_URL = "<domain:port>";
 
 
 export const client = async (url, method, body) => {
+    console.log("body -->", body);
     try {
+        console.log("body -->", body);
         const response = await fetch(`${API_BASE_URL}/${url}`, {
             method,
             body: JSON.stringify(body),
@@ -23,7 +25,8 @@ export const client = async (url, method, body) => {
         return await response.json();
 
     } catch (error) {
-        console.error("something went wrong", error)
+        console.error("something went wrong", error);
+        return Promise.reject({error: error.code});
     }
 };
 
