@@ -16,7 +16,7 @@ import CustomDatePicker from "../../../shared/CustomDatePicker";
 import CustomTextInput from "../../../shared/CustomTextInput";
 import CustomButton from "../../../shared/CustomButton";
 
-import {signUp} from "../../../services/loginService";
+import {signUp} from "../../../services/authService";
 
 import styles from "../../../styles/register";
 import inputStyles from "../../../styles/input";
@@ -33,7 +33,6 @@ const RegisterScreen = ({navigation}) => {
     const [showDatePicker, setShowDatePicker] = useState(false);
 
     const onSignUp = () => {
-        console.log("request");
         if (!username || !contactNumber || !dob || !role || !password) {
             alert("Please fill all the details!");
             return;
@@ -46,8 +45,6 @@ const RegisterScreen = ({navigation}) => {
             dob: format(dob, 'yyyy-MM-dd'),
             role,
         };
-
-        console.log("request", request);
 
         signUp(request)
             .then(() => navigation.navigate('Home'))

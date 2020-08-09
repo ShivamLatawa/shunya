@@ -1,9 +1,8 @@
 // local development
-// const API_BASE_URL = "http://192.168.1.2:8080";
+const API_BASE_URL = 'http://192.168.1.2:8080';
 
 // production
-const API_BASE_URL = "<domain:port>";
-
+// const API_BASE_URL = "<domain:port>";
 
 export const client = async (url, method, body) => {
     try {
@@ -11,8 +10,8 @@ export const client = async (url, method, body) => {
             method,
             body: JSON.stringify(body),
             headers: {
-                'Content-Type': 'application/json'
-            }
+                'Content-Type': 'application/json',
+            },
         });
 
         if (!response.ok) {
@@ -20,13 +19,17 @@ export const client = async (url, method, body) => {
             return Promise.reject({error: error.code});
         }
 
-        return await response.json();
+        // since the url for login doesn't return any response json
+        // this check needs to be there for separate handling of login
+        if(response.url.includes('login')) {
+            return Promise.resolve("Login Success!");
+        }
 
+        return await response.json();
     } catch (error) {
-        console.error("something went wrong", error);
+        console.error('something went wrong', error);
         return Promise.reject({error: error.code});
     }
 };
-
 
 export default client;
