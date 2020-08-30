@@ -3,11 +3,7 @@ import {StyleSheet, Text, TouchableOpacity} from "react-native";
 import {Colors} from "react-native/Libraries/NewAppScreen";
 
 
-export const CustomButton = ({
-                                 text,
-                                 onPress = () => {
-                                 }
-                             }) => {
+export const CustomButton = ({text, onPress}) => {
 
     return (
         <TouchableOpacity

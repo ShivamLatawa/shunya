@@ -1,3 +1,5 @@
+import AsyncStorage from '@react-native-community/async-storage';
+
 // local development
 const API_BASE_URL = 'http://192.168.1.3:8080';
 
@@ -6,13 +8,20 @@ const API_BASE_URL = 'http://192.168.1.3:8080';
 
 export const client = async (url, method, body) => {
     try {
-        const response = await fetch(`${API_BASE_URL}/${url}`, {
+        const authToken = await AsyncStorage.getItem('user_token');
+        const config = {
             method,
-            body: JSON.stringify(body),
             headers: {
+                Authorization: authToken,
                 'Content-Type': 'application/json',
             },
-        });
+        };
+
+        if (body) {
+            config.body = JSON.stringify(body);
+        }
+
+        const response = await fetch(`${API_BASE_URL}/${url}`, config);
 
         if (!response.ok) {
             const error = await response.json();
