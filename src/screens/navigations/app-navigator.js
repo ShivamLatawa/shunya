@@ -12,7 +12,6 @@ import OrdersScreen from '../orders';
 import ProductsScreen from '../products';
 import SupportScreen from '../support';
 import TabBarComponent from '../../shared/TabBarComponent';
-import {AddProductModal} from '../products/addProduct';
 import AddProductNavigator from './productNavigator';
 
 const TabNavigatorConfig = {

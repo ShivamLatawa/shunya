@@ -1,7 +1,8 @@
 import {createStackNavigator} from 'react-navigation-stack';
 
-import AddProduct from '../products/addProduct';
-import EditProduct from '../products/editProduct';
+import AddProduct from '../products/add';
+import EditProduct from '../products/edit';
+import ProductSuccess from '../products/success';
 
 const AddProductNavigatorConfig = {
     initialRouteName: 'Add',
@@ -15,6 +16,9 @@ const RouteConfigs = {
     },
     Edit: {
         screen: EditProduct,
+    },
+    Success: {
+        screen: ProductSuccess,
     },
 };
 

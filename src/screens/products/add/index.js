@@ -16,7 +16,7 @@ import {getProductCategories} from '../../../services/productService';
 import inputStyles from '../../../styles/input';
 import iconStyles from '../../../styles/icon';
 
-export const AddProductModal = ({navigation}) => {
+export const AddProduct = ({navigation}) => {
     const [item, setItem] = useState();
     const [price, setPrice] = useState();
     const [quantity, setQuantity] = useState();
@@ -27,7 +27,13 @@ export const AddProductModal = ({navigation}) => {
     }, []);
 
     const onNext = () => {
-        navigation.navigate('Edit');
+        const product = {
+            item,
+            quantity,
+            price,
+            id: productCategories.find((product) => product.name === item).id,
+        };
+        navigation.navigate('Edit', {product});
     };
 
     return (
@@ -117,4 +123,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default AddProductModal;
+export default AddProduct;
