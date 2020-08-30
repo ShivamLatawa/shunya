@@ -1,5 +1,5 @@
 // local development
-const API_BASE_URL = 'http://192.168.1.2:8080';
+const API_BASE_URL = 'http://192.168.1.3:8080';
 
 // production
 // const API_BASE_URL = "<domain:port>";
@@ -21,8 +21,8 @@ export const client = async (url, method, body) => {
 
         // since the url for login doesn't return any response json
         // this check needs to be there for separate handling of login
-        if(response.url.includes('login')) {
-            return Promise.resolve("Login Success!");
+        if (response.url.includes('login')) {
+            return Promise.resolve(response);
         }
 
         return await response.json();

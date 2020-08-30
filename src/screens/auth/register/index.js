@@ -1,7 +1,11 @@
 import React, {useState} from 'react';
 import {format} from 'date-fns';
-import {faPhoneAlt, faLock} from "@fortawesome/free-solid-svg-icons";
-import {faCalendar, faUser, faIdCard} from "@fortawesome/free-regular-svg-icons";
+import {faPhoneAlt, faLock} from '@fortawesome/free-solid-svg-icons';
+import {
+    faCalendar,
+    faUser,
+    faIdCard,
+} from '@fortawesome/free-regular-svg-icons';
 import {
     ScrollView,
     Text,
@@ -12,29 +16,28 @@ import {
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {Picker} from '@react-native-community/picker';
 
-import CustomDatePicker from "../../../shared/CustomDatePicker";
-import CustomTextInput from "../../../shared/CustomTextInput";
-import CustomButton from "../../../shared/CustomButton";
+import CustomDatePicker from '../../../shared/CustomDatePicker';
+import CustomTextInput from '../../../shared/CustomTextInput';
+import CustomButton from '../../../shared/CustomButton';
 
-import {signUp} from "../../../services/authService";
+import {signUp} from '../../../services/authService';
 
-import styles from "../../../styles/register";
-import inputStyles from "../../../styles/input";
-import iconStyles from "../../../styles/icon";
-import brandStyles from "../../../styles/brand";
-
+import styles from '../../../styles/register';
+import inputStyles from '../../../styles/input';
+import iconStyles from '../../../styles/icon';
+import brandStyles from '../../../styles/brand';
 
 const RegisterScreen = ({navigation}) => {
     const [username, setUsername] = useState();
     const [contactNumber, setContactNumber] = useState();
     const [dob, setDobInInput] = useState(new Date());
-    const [role, setRole] = useState("farmer");
+    const [role, setRole] = useState('farmer');
     const [password, setPassword] = useState();
     const [showDatePicker, setShowDatePicker] = useState(false);
 
     const onSignUp = () => {
         if (!username || !contactNumber || !dob || !role || !password) {
-            alert("Please fill all the details!");
+            alert('Please fill all the details!');
             return;
         }
 
@@ -47,8 +50,8 @@ const RegisterScreen = ({navigation}) => {
         };
 
         signUp(request)
-            .then(() => navigation.navigate('Home'))
-            .catch(err => console.log("err -->", err));
+            .then(() => navigation.navigate('Login'))
+            .catch((err) => console.log('err -->', err));
     };
 
     return (
@@ -58,18 +61,18 @@ const RegisterScreen = ({navigation}) => {
             <CustomTextInput
                 icon={faUser}
                 placeholder="Username"
-                onChange={(value) => setUsername(value)}/>
+                onChange={(value) => setUsername(value)}
+            />
 
             <CustomTextInput
                 icon={faPhoneAlt}
                 placeholder="Contact Number"
                 keyboardType="numeric"
-                onChange={(value) => setContactNumber(value)}/>
+                onChange={(value) => setContactNumber(value)}
+            />
 
             <View style={inputStyles.dateInput}>
-                <TouchableOpacity
-                    onPress={() => setShowDatePicker(true)}
-                >
+                <TouchableOpacity onPress={() => setShowDatePicker(true)}>
                     <FontAwesomeIcon
                         icon={faCalendar}
                         size={20}
@@ -97,8 +100,8 @@ const RegisterScreen = ({navigation}) => {
                     selectedValue={role}
                     style={inputStyles.picker}
                     onValueChange={(value) => setRole(value)}>
-                    <Picker.Item label="Farmer" value="farmer"/>
-                    <Picker.Item label="Vendor" value="vendor"/>
+                    <Picker.Item label="Farmer" value="farmer" />
+                    <Picker.Item label="Vendor" value="vendor" />
                 </Picker>
             </View>
 
@@ -106,14 +109,16 @@ const RegisterScreen = ({navigation}) => {
                 icon={faLock}
                 placeholder="Password"
                 secureTextEntry={true}
-                onChange={(value) => setPassword(value)}/>
+                onChange={(value) => setPassword(value)}
+            />
 
             <CustomTextInput
                 icon={faLock}
                 placeholder="Confirm Password"
-                secureTextEntry={true}/>
+                secureTextEntry={true}
+            />
 
-            <CustomButton text="Sign Up" onPress={() => onSignUp()}/>
+            <CustomButton text="Sign Up" onPress={() => onSignUp()} />
 
             <View style={styles.createAccountWrapper}>
                 <Text style={styles.newAccountText}>
@@ -128,4 +133,3 @@ const RegisterScreen = ({navigation}) => {
 };
 
 export default RegisterScreen;
-
