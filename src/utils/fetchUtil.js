@@ -24,7 +24,6 @@ export const client = async (url, method, body) => {
         const response = await fetch(`${API_BASE_URL}/${url}`, config);
 
         if (!response.ok) {
-            ß;
             const error = await response.json();
             return Promise.reject({error: error.code});
         }
