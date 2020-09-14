@@ -1,7 +1,7 @@
 import client from '../utils/fetchUtil';
 import {GET_METHOD, POST_METHOD} from './service.constants';
 
-const PRODUCT_CATEGORIES_URL = 'app/v1/productCategory';
+export const PRODUCT_CATEGORIES_URL = 'app/v1/productCategory';
 const PRODUCT_DETAILS_URL = 'app/v1/productDetails';
 
 export const getProductCategories = async () => {

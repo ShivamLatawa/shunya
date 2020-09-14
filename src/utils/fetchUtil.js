@@ -25,7 +25,7 @@ export const client = async (url, method, body) => {
 
         if (!response.ok) {
             const error = await response.json();
-            return Promise.reject({error: error.code});
+            return Promise.reject(error);
         }
 
         // since the url for login doesn't return any response json

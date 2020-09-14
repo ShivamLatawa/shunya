@@ -1,16 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import {View, ActivityIndicator, StyleSheet, Text} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import AsyncStorage from '@react-native-community/async-storage';
+import {isAuthenticated} from '../../services/authService';
 
 export const SplashScreen = ({navigation}) => {
     useEffect(() => {
         setTimeout(() => {
-            AsyncStorage.getItem('user_token').then((token) => {
-                token
-                    ? navigation.navigate('Home')
-                    : navigation.navigate('Auth');
-            });
+            isAuthenticated()
+                .then(() => navigation.navigate('Home'))
+                .catch((error) =>
+                    error.status === 403 ? navigation.navigate('Auth') : null,
+                );
         }, 3000);
     }, []);
 
