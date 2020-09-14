@@ -3,10 +3,17 @@ import React from 'react';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 import CustomButton from '../../../shared/CustomButton';
+import {NavigationActions, StackActions} from 'react-navigation';
 
 const ProductSuccess = ({navigation}) => {
     const onClose = () => {
-        navigation.navigate('Products');
+        navigation.dispatch(
+            StackActions.reset({
+                index: 0,
+                key: null,
+                actions: [NavigationActions.navigate({routeName: 'Products'})],
+            }),
+        );
     };
 
     return (

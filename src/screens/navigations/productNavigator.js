@@ -3,6 +3,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import AddProduct from '../products/add';
 import EditProduct from '../products/edit';
 import ProductSuccess from '../products/success';
+import ProductsScreen from '../products';
 
 const AddProductNavigatorConfig = {
     initialRouteName: 'Add',
@@ -19,6 +20,9 @@ const RouteConfigs = {
     },
     Success: {
         screen: ProductSuccess,
+    },
+    Products: {
+        screen: ProductsScreen,
     },
 };
 
