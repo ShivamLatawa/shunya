@@ -14,5 +14,6 @@ export const login = async (body) => {
 };
 
 export const isAuthenticated = async () => {
+    // change to user endpoint later
     return await client(PRODUCT_CATEGORIES_URL, GET_METHOD);
 };
