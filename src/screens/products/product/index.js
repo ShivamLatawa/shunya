@@ -5,21 +5,19 @@ import {Card} from 'react-native-elements';
 
 export const Product = ({product}) => {
     return (
-        <Card>
-            <Card.Title>{product.id}</Card.Title>
+        <Card containerStyle={styles.cardContainer}>
+            <Card.Title>{product.name}</Card.Title>
             <Card.Divider />
             <View>
-                <Text>{product.quantity}</Text>
-                <Text>{product.pricePerUnit}</Text>
+                <Text>Quantity: {product.quantity} kg</Text>
+                <Text>Price/Kg: {product.price}</Text>
             </View>
         </Card>
     );
 };
 
 const styles = StyleSheet.create({
-    text: {
-        color: Colors.white,
-    },
+    cardContainer: {},
 });
 
 export default Product;
