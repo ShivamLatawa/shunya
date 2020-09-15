@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-community/async-storage';
 
 // local development
-const API_BASE_URL = 'http://192.168.0.103:8080';
+const API_BASE_URL = 'http://192.168.1.2:8080';
 
 // production
 // const API_BASE_URL = "<domain:port>";

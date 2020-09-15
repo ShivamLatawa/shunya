@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, ScrollView, StyleSheet, Text} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-
+import {getProductDetails} from '../../services/productService';
 import CustomButton from '../../shared/CustomButton';
+import Product from './product';
 
 const ProductsScreen = ({navigation}) => {
+    const [productDetails, setProductDetails] = useState([]);
+
+    useEffect(() => {
+        getProductDetails().then((result) => setProductDetails(result));
+    }, []);
+
     const onAdd = () => {
         navigation.navigate('Add');
     };
@@ -20,7 +27,15 @@ const ProductsScreen = ({navigation}) => {
                     <CustomButton text="Add" onPress={() => onAdd()} />
                 </View>
 
-                <ScrollView></ScrollView>
+                <ScrollView>
+                    {productDetails.map((product) => {
+                        return (
+                            <Product
+                                key={product.id}
+                                product={product}></Product>
+                        );
+                    })}
+                </ScrollView>
             </ScrollView>
         </View>
     );
