@@ -1,5 +1,5 @@
 import React from 'react';
-import {createBottomTabNavigator} from 'react-navigation-tabs';
+import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
 import {
     faHome,
     faShoppingCart,
@@ -12,66 +12,65 @@ import OrdersScreen from '../orders';
 import ProductsScreen from '../products';
 import SupportScreen from '../support';
 import TabBarComponent from '../../shared/TabBarComponent';
-import AddProductNavigator from './productNavigator';
 
 const TabNavigatorConfig = {
     initialRouteName: 'Home',
     header: null,
     headerMode: 'none',
+    barStyle: { backgroundColor: '#7789f6' },
 };
 
 const RouteConfigs = {
     Home: {
         screen: HomeScreen,
         navigationOptions: ({navigation}) => ({
-            tabBarButtonComponent: () => (
+            tabBarIcon: () => (
                 <TabBarComponent
                     icon={faHome}
-                    title="Home"
                     navigationProps={navigation}
                 />
             ),
         }),
+        barStyle: { backgroundColor: '#67baf6' },
     },
     Orders: {
         screen: OrdersScreen,
         navigationOptions: ({navigation}) => ({
-            tabBarButtonComponent: () => (
+            tabBarIcon: () => (
                 <TabBarComponent
                     icon={faShoppingCart}
-                    title="Orders"
                     navigationProps={navigation}
                 />
             ),
+            barStyle: { backgroundColor: '#cccccc' },  
         }),
     },
     Products: {
         screen: ProductsScreen,
         navigationOptions: ({navigation}) => ({
-            tabBarButtonComponent: () => (
+            tabBarIcon: () => (
                 <TabBarComponent
                     icon={faBookmark}
-                    title="Products"
                     navigationProps={navigation}
                 />
             ),
+            barStyle: { backgroundColor: '#67baf6' },  
         }),
     },
     Support: {
         screen: SupportScreen,
         navigationOptions: ({navigation}) => ({
-            tabBarButtonComponent: () => (
+            tabBarIcon: () => (
                 <TabBarComponent
                     icon={faExclamationCircle}
-                    title="Support"
                     navigationProps={navigation}
                 />
             ),
+            barStyle: { backgroundColor: '#abcdef' },  
         }),
     },
-    Add: AddProductNavigator,
 };
 
-const AppNavigator = createBottomTabNavigator(RouteConfigs, TabNavigatorConfig);
+const AppNavigator = createMaterialBottomTabNavigator(RouteConfigs, TabNavigatorConfig);
 
 export default AppNavigator;
