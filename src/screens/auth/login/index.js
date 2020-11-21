@@ -42,12 +42,13 @@ const LoginScreen = ({navigation}) => {
             <CustomTextInput
                 icon={faPhoneAlt}
                 placeholder="Contact Number"
+                keyboardType="numeric"
                 onChange={(value) => setContactNumber(value)}
             />
 
             <CustomTextInput
                 icon={faLock}
-                placeholder="**********"
+                placeholder="Password"
                 secureTextEntry={true}
                 onChange={(value) => setPassword(value)}
             />

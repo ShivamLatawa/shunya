@@ -31,6 +31,7 @@ export const registerScreenStyles = StyleSheet.create({
 
     createAccountWrapper: {
         flexDirection: 'row',
+        marginTop: 20,
     }
 });
 

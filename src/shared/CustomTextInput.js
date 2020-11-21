@@ -1,6 +1,8 @@
 import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import {TextInput, View} from "react-native";
+import {Icon} from "react-native-material-ui";
+
 
 import inputStyles from "../styles/input";
 import iconStyles from "../styles/icon";

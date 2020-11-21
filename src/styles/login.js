@@ -25,6 +25,7 @@ const loginScreenStyles = StyleSheet.create({
 
     createAccountWrapper: {
         flexDirection: 'row',
+        marginTop: 20,
     },
 });
 
