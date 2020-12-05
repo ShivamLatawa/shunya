@@ -7,7 +7,7 @@ export const SplashScreen = ({navigation}) => {
     useEffect(() => {
         setTimeout(() => {
             isAuthenticated()
-                .then(() => navigation.navigate('Home'))
+                .then(() => navigation.navigate('Products'))
                 .catch((error) =>
                     error.status === 403 ? navigation.navigate('Auth') : null,
                 );

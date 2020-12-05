@@ -15,3 +15,7 @@ export const getProductDetails = async () => {
 export const addProduct = async (body) => {
     return await client(PRODUCT_DETAILS_URL, POST_METHOD, body);
 };
+
+export const addProductCategory = async (body) => {
+    return await client(PRODUCT_CATEGORIES_URL, POST_METHOD, body);
+};

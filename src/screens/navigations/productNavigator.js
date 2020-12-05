@@ -1,6 +1,6 @@
 import {createStackNavigator} from 'react-navigation-stack';
 
-import AddProduct from '../products/add';
+import AddProduct from '../products/sell';
 import EditProduct from '../products/edit';
 import ProductSuccess from '../products/success';
 import ProductsScreen from '../products';
