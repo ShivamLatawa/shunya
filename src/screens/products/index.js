@@ -70,13 +70,6 @@ const ProductsScreen = ({navigation}) => {
 
     return (
         <>
-            {showAddProductDialog && (
-                <View style={styles.productContainer}>
-                    {showAddProductDialog && (
-                        <AddProductCategory onAddProduct={onAddProduct} />
-                    )}
-                </View>
-            )}
             <View style={styles.container}>
                 <View style={styles.header}>
                     <Text style={styles.text}>Shunya</Text>
@@ -84,11 +77,13 @@ const ProductsScreen = ({navigation}) => {
                 <View style={styles.addButton}>
                     <ActionButton
                         onPress={() => setShowAddProductDialog(true)}
+                        style={{container: styles.actionButton}}
                         icon={<TabBarComponent icon={faPlus} title="Add" />}
                     />
                 </View>
                 <View style={styles.sellButtonWrapper}>
                     <ActionButton
+                        style={{container: styles.actionButton}}
                         icon={
                             <TabBarComponent icon={faRupeeSign} title="Sell" />
                         }
@@ -101,6 +96,13 @@ const ProductsScreen = ({navigation}) => {
                         {renderProductDetails()}
                     </ScrollView>
                 </ScrollView>
+                {showAddProductDialog && (
+                    <View style={styles.productContainer}>
+                        {showAddProductDialog && (
+                            <AddProductCategory onAddProduct={onAddProduct} />
+                        )}
+                    </View>
+                )}
             </View>
         </>
     );
@@ -113,12 +115,12 @@ const styles = StyleSheet.create({
     header: {
         backgroundColor: Colors.black,
         height: 150,
-        paddingTop: 30,
+        paddingTop: 20,
         alignItems: 'center',
     },
     text: {
         color: Colors.white,
-        fontSize: 24,
+        fontSize: 30,
         fontStyle: 'italic',
         fontWeight: 'bold',
     },
@@ -129,8 +131,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
     },
-    sellButton: {
-        backgroundColor: 'green',
+    actionButton: {
+        backgroundColor: '#67baf6',
     },
     sellButtonWrapper: {
         position: 'relative',
@@ -145,12 +147,12 @@ const styles = StyleSheet.create({
     },
     productContainer: {
         position: 'absolute',
-        left: '15%',
-        top: '30%',
+        left: '14%',
+        top: '28%',
         borderColor: '#67baf6',
-        borderWidth: 2,
-        elevation: 5,
-        zIndex: 11,
+        borderWidth: 1,
+        elevation: 100,
+        backgroundColor: 'red',
     },
     scrollView: {
         minHeight: 900,
