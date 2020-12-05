@@ -12,7 +12,7 @@ const EditProduct = ({navigation}) => {
     const headers = ['Product Name', 'Quantity', 'Price/Kg'];
 
     const onEdit = () => {
-        navigation.navigate('Add');
+        navigation.navigate('Sell');
     };
 
     const onConfirm = () => {

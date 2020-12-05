@@ -16,7 +16,7 @@ import {getProductCategories} from '../../../services/productService';
 import inputStyles from '../../../styles/input';
 import iconStyles from '../../../styles/icon';
 
-export const AddProduct = ({navigation}) => {
+export const SellProduct = ({navigation}) => {
     const [item, setItem] = useState();
     const [price, setPrice] = useState();
     const [quantity, setQuantity] = useState();
@@ -123,4 +123,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default AddProduct;
+export default SellProduct;

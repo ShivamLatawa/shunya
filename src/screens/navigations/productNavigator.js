@@ -1,19 +1,19 @@
 import {createStackNavigator} from 'react-navigation-stack';
 
-import AddProduct from '../products/sell';
+import SellProduct from '../products/sell';
 import EditProduct from '../products/edit';
 import ProductSuccess from '../products/success';
 import ProductsScreen from '../products';
 
-const AddProductNavigatorConfig = {
-    initialRouteName: 'Add',
+const SellProductNavigatorConfig = {
+    initialRouteName: 'Sell',
     header: null,
     headerMode: 'none',
 };
 
 const RouteConfigs = {
-    Add: {
-        screen: AddProduct,
+    Sell: {
+        screen: SellProduct,
     },
     Edit: {
         screen: EditProduct,
@@ -28,7 +28,7 @@ const RouteConfigs = {
 
 const AddProductNavigator = createStackNavigator(
     RouteConfigs,
-    AddProductNavigatorConfig,
+    SellProductNavigatorConfig,
 );
 
 export default AddProductNavigator;

@@ -26,7 +26,7 @@ const ProductsScreen = ({navigation}) => {
     }, []);
 
     const onSellProduct = () => {
-        navigation.navigate('Add');
+        navigation.navigate('Sell');
     };
 
     const onAddProduct = (action, product, productCategory) => {
@@ -72,7 +72,9 @@ const ProductsScreen = ({navigation}) => {
         <>
             {showAddProductDialog && (
                 <View style={styles.productContainer}>
-                    {showAddProductDialog && <AddProductCategory onAddProduct={onAddProduct} />}
+                    {showAddProductDialog && (
+                        <AddProductCategory onAddProduct={onAddProduct} />
+                    )}
                 </View>
             )}
             <View style={styles.container}>
@@ -94,7 +96,10 @@ const ProductsScreen = ({navigation}) => {
                     />
                 </View>
                 <ScrollView style={styles.content}>
-                    <ScrollView>{renderProductDetails()}</ScrollView>
+                    <Text style={styles.title}>Products to sell</Text>
+                    <ScrollView style={styles.scrollView}>
+                        {renderProductDetails()}
+                    </ScrollView>
                 </ScrollView>
             </View>
         </>
@@ -117,6 +122,13 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
         fontWeight: 'bold',
     },
+    title: {
+        color: Colors.dark,
+        fontSize: 20,
+        fontStyle: 'italic',
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
     sellButton: {
         backgroundColor: 'green',
     },
@@ -138,7 +150,10 @@ const styles = StyleSheet.create({
         borderColor: '#67baf6',
         borderWidth: 2,
         elevation: 5,
-        zIndex: 2
+        zIndex: 11,
+    },
+    scrollView: {
+        minHeight: 900,
     },
 });
 
