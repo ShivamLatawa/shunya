@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {View, ActivityIndicator, StyleSheet, Text} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {isAuthenticated} from '../../services/authService';
@@ -7,7 +7,11 @@ export const SplashScreen = ({navigation}) => {
     useEffect(() => {
         setTimeout(() => {
             isAuthenticated()
-                .then(() => navigation.navigate('Products'))
+                .then((user) => {
+                    if (user.role === 'farmer') {
+                        navigation.navigate('Products');
+                    }
+                })
                 .catch((error) =>
                     error.status === 403 ? navigation.navigate('Auth') : null,
                 );

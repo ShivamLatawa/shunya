@@ -1,29 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import {View, ScrollView, StyleSheet, Text} from 'react-native';
+import React, {useState} from 'react';
+import {View, StyleSheet, Text} from 'react-native';
 import {ActionButton} from 'react-native-material-ui';
 import {faPlus, faRupeeSign} from '@fortawesome/free-solid-svg-icons';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {
-    getProductDetails,
-    getProductCategories,
-    addProductCategory,
-} from '../../services/productService';
+import {addProductCategory} from '../../services/productService';
 import TabBarComponent from '../../shared/TabBarComponent';
-import Product from './product';
 import AddProductCategory from './add';
 
 const ProductsScreen = ({navigation}) => {
-    const [productDetails, setProductDetails] = useState([]);
     const [showAddProductDialog, setShowAddProductDialog] = useState(false);
-    const [productCategories, setProductCategories] = useState([]);
-
-    useEffect(() => {
-        getProductDetails().then((result) => setProductDetails(result));
-    }, []);
-
-    useEffect(() => {
-        getProductCategories().then((result) => setProductCategories(result));
-    }, []);
 
     const onSellProduct = () => {
         navigation.navigate('Sell');
@@ -48,26 +33,6 @@ const ProductsScreen = ({navigation}) => {
         addProductCategory(payload).then(() => setShowAddProductDialog(false));
     };
 
-    const renderProductDetails = () => {
-        return (
-            productCategories.length > 0 &&
-            productDetails.map((productDetail) => {
-                const productCategory = productCategories.find(
-                    (category) => productDetail.productId === category.id,
-                );
-
-                const product = {
-                    id: productDetail.id,
-                    quantity: productDetail.quantity,
-                    price: productDetail.pricePerUnit,
-                    name: productCategory.name,
-                };
-
-                return <Product key={product.id} product={product}></Product>;
-            })
-        );
-    };
-
     return (
         <>
             <View style={styles.container}>
@@ -90,12 +55,7 @@ const ProductsScreen = ({navigation}) => {
                         onPress={() => onSellProduct()}
                     />
                 </View>
-                <ScrollView style={styles.content}>
-                    <Text style={styles.title}>Products to sell</Text>
-                    <ScrollView style={styles.scrollView}>
-                        {renderProductDetails()}
-                    </ScrollView>
-                </ScrollView>
+
                 {showAddProductDialog && (
                     <View style={styles.productContainer}>
                         {showAddProductDialog && (
@@ -115,7 +75,7 @@ const styles = StyleSheet.create({
     header: {
         backgroundColor: Colors.black,
         height: 150,
-        paddingTop: 20,
+        paddingTop: 45,
         alignItems: 'center',
     },
     text: {
@@ -124,38 +84,21 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
         fontWeight: 'bold',
     },
-    title: {
-        color: Colors.dark,
-        fontSize: 20,
-        fontStyle: 'italic',
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
     actionButton: {
         backgroundColor: '#67baf6',
     },
     sellButtonWrapper: {
         position: 'relative',
         right: 100,
+        top: 100,
     },
     addButton: {
         right: 0,
-        bottom: 0,
-    },
-    content: {
-        padding: 20,
+        top: 100,
     },
     productContainer: {
-        position: 'absolute',
-        left: '14%',
-        top: '28%',
-        borderColor: '#67baf6',
-        borderWidth: 1,
-        elevation: 100,
-        backgroundColor: 'red',
-    },
-    scrollView: {
-        minHeight: 900,
+        left: '15%',
+        top: '25%',
     },
 });
 
