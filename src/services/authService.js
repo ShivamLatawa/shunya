@@ -1,9 +1,9 @@
 import client from '../utils/fetchUtil';
-import {getProductCategories, PRODUCT_CATEGORIES_URL} from './productService';
 import {POST_METHOD, GET_METHOD} from './service.constants';
 
 const SIGN_UP_URL = 'app/v1/users/sign-up';
 const LOGIN_URL = 'login';
+const USERS_URL = 'app/v1/users/user-info';
 
 export const signUp = async (body) => {
     return await client(SIGN_UP_URL, POST_METHOD, body);
@@ -14,6 +14,5 @@ export const login = async (body) => {
 };
 
 export const isAuthenticated = async () => {
-    // change to user endpoint later
-    return await client(PRODUCT_CATEGORIES_URL, GET_METHOD);
+    return await client(USERS_URL, GET_METHOD);
 };

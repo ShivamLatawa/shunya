@@ -36,6 +36,10 @@ export const SellProduct = ({navigation}) => {
         navigation.navigate('Edit', {product});
     };
 
+    const onCancel = () => {
+        navigation.navigate('Products');
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -84,9 +88,15 @@ export const SellProduct = ({navigation}) => {
                     />
                 </View>
 
-                <View style={styles.createAccountWrapper}>
+                <View style={styles.buttonsWrapper}>
                     <View style={styles.nextButton}>
                         <CustomButton text="Next" onPress={() => onNext()} />
+                    </View>
+                    <View style={styles.cancelButton}>
+                        <CustomButton
+                            text="Cancel"
+                            onPress={() => onCancel()}
+                        />
                     </View>
                 </View>
             </ScrollView>
@@ -118,8 +128,13 @@ const styles = StyleSheet.create({
     content: {
         padding: 20,
     },
+    buttonsWrapper: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+
     nextButton: {
-        alignItems: 'center',
+        marginRight: 30,
     },
 });
 
