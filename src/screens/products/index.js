@@ -1,15 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import {View, ScrollView, StyleSheet, Text} from 'react-native';
+import {ActionButton} from 'react-native-material-ui';
+import {faPlus, faRupeeSign} from '@fortawesome/free-solid-svg-icons';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {
     getProductDetails,
     getProductCategories,
+    addProductCategory,
 } from '../../services/productService';
-import CustomButton from '../../shared/CustomButton';
+import TabBarComponent from '../../shared/TabBarComponent';
 import Product from './product';
+import AddProductCategory from './add';
 
 const ProductsScreen = ({navigation}) => {
     const [productDetails, setProductDetails] = useState([]);
+    const [showAddProductDialog, setShowAddProductDialog] = useState(false);
     const [productCategories, setProductCategories] = useState([]);
 
     useEffect(() => {
@@ -20,8 +25,27 @@ const ProductsScreen = ({navigation}) => {
         getProductCategories().then((result) => setProductCategories(result));
     }, []);
 
-    const onAdd = () => {
+    const onSellProduct = () => {
         navigation.navigate('Add');
+    };
+
+    const onAddProduct = (action, product, productCategory) => {
+        if (action === 'cancel') {
+            setShowAddProductDialog(false);
+            return;
+        }
+
+        if (!productCategory || !product) {
+            alert('Please fill the details!');
+            return;
+        }
+
+        const payload = {
+            type: productCategory,
+            name: product,
+        };
+
+        addProductCategory(payload).then(() => setShowAddProductDialog(false));
     };
 
     const renderProductDetails = () => {
@@ -45,19 +69,35 @@ const ProductsScreen = ({navigation}) => {
     };
 
     return (
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.text}>Shunya</Text>
-            </View>
-
-            <ScrollView style={styles.content}>
-                <View style={styles.addButton}>
-                    <CustomButton text="Add" onPress={() => onAdd()} />
+        <>
+            {showAddProductDialog && (
+                <View style={styles.productContainer}>
+                    {showAddProductDialog && <AddProductCategory onAddProduct={onAddProduct} />}
                 </View>
-
-                <ScrollView>{renderProductDetails()}</ScrollView>
-            </ScrollView>
-        </View>
+            )}
+            <View style={styles.container}>
+                <View style={styles.header}>
+                    <Text style={styles.text}>Shunya</Text>
+                </View>
+                <View style={styles.addButton}>
+                    <ActionButton
+                        onPress={() => setShowAddProductDialog(true)}
+                        icon={<TabBarComponent icon={faPlus} title="Add" />}
+                    />
+                </View>
+                <View style={styles.sellButtonWrapper}>
+                    <ActionButton
+                        icon={
+                            <TabBarComponent icon={faRupeeSign} title="Sell" />
+                        }
+                        onPress={() => onSellProduct()}
+                    />
+                </View>
+                <ScrollView style={styles.content}>
+                    <ScrollView>{renderProductDetails()}</ScrollView>
+                </ScrollView>
+            </View>
+        </>
     );
 };
 
@@ -77,13 +117,29 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
         fontWeight: 'bold',
     },
+    sellButton: {
+        backgroundColor: 'green',
+    },
+    sellButtonWrapper: {
+        position: 'relative',
+        right: 100,
+    },
     addButton: {
-        alignItems: 'flex-end',
+        right: 0,
+        bottom: 0,
     },
     content: {
         padding: 20,
     },
-    productContainer: {},
+    productContainer: {
+        position: 'absolute',
+        left: '15%',
+        top: '30%',
+        borderColor: '#67baf6',
+        borderWidth: 2,
+        elevation: 5,
+        zIndex: 2
+    },
 });
 
 export default ProductsScreen;
