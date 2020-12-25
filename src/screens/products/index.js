@@ -42,17 +42,15 @@ const ProductsScreen = ({navigation}) => {
                 <View style={styles.addButton}>
                     <ActionButton
                         onPress={() => setShowAddProductDialog(true)}
+                        icon="add"
                         style={{container: styles.actionButton}}
-                        icon={<TabBarComponent icon={faPlus} title="Add" />}
                     />
                 </View>
                 <View style={styles.sellButtonWrapper}>
                     <ActionButton
-                        style={{container: styles.actionButton}}
-                        icon={
-                            <TabBarComponent icon={faRupeeSign} title="Sell" />
-                        }
+                        icon="credit-card"
                         onPress={() => onSellProduct()}
+                        style={{container: styles.actionButton}}
                     />
                 </View>
 
@@ -73,9 +71,9 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
     },
     header: {
-        backgroundColor: Colors.black,
-        height: 150,
-        paddingTop: 45,
+        backgroundColor: '#1976d2',
+        height: 100,
+        paddingTop: 20,
         alignItems: 'center',
     },
     text: {
@@ -85,7 +83,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     actionButton: {
-        backgroundColor: '#67baf6',
+        backgroundColor: '#f50057',
     },
     sellButtonWrapper: {
         position: 'relative',
@@ -98,7 +96,7 @@ const styles = StyleSheet.create({
     },
     productContainer: {
         left: '15%',
-        top: '25%',
+        top: '30%',
     },
 });
 

@@ -41,7 +41,7 @@ const EditProduct = ({route, navigation}) => {
                     <Row
                         data={headers}
                         flexArr={[2, 1, 1]}
-                        style={styles.head}
+                        style={styles.tableHeader}
                         textStyle={styles.text}
                     />
                     <Rows
@@ -66,32 +66,31 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     tableContainer: {
-        flex: 1,
-        padding: 30,
-        paddingTop: 30,
+        paddingTop: 60,
+        padding: 25,
         backgroundColor: '#fff',
     },
-    head: {height: 40, backgroundColor: '#f1f8ff'},
-    title: {flex: 1, backgroundColor: '#f6f8fa'},
+    tableHeader: {height: 40, backgroundColor: '#f1f8ff'},
+    title: {backgroundColor: '#f6f8fa'},
     row: {height: 200},
     text: {textAlign: 'center', fontSize: 18},
     headerText: {
         color: Colors.white,
-        fontSize: 20,
+        fontSize: 30,
         fontStyle: 'italic',
         fontWeight: 'bold',
     },
     header: {
-        backgroundColor: Colors.black,
-        height: 60,
-        paddingTop: 15,
+        backgroundColor: '#1976d2',
+        height: 100,
+        paddingTop: 20,
         alignItems: 'center',
     },
     buttons: {
-        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-around',
         marginTop: 50,
+        padding: 25,
     },
 });
 

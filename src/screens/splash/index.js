@@ -9,13 +9,13 @@ const SplashScreen = ({navigation}) => {
             isAuthenticated()
                 .then((user) => {
                     if (user.role === 'farmer') {
-                        navigation.navigate('Products');
+                        navigation.navigate('Auth');
                     }
                 })
                 .catch((error) =>
                     error.status === 403 ? navigation.navigate('Auth') : null,
                 );
-        }, 3000);
+        }, 2000);
     }, []);
 
     return (

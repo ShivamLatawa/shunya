@@ -46,9 +46,14 @@ export const SellProduct = ({navigation}) => {
                 <Text style={styles.text}>Upload Items</Text>
             </View>
 
-            <ScrollView style={styles.content}>
+            <ScrollView
+                style={styles.content}
+                contentContainerStyle={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}>
                 <View style={styles.addItem}>
-                    <Text style={styles.addItemText}>Add an Item here</Text>
+                    <Text style={styles.addItemText}>Sell Item</Text>
                 </View>
                 <View style={inputStyles.input}>
                     <FontAwesomeIcon
@@ -110,29 +115,30 @@ const styles = StyleSheet.create({
     },
 
     header: {
-        backgroundColor: Colors.black,
-        height: 60,
-        paddingTop: 15,
+        backgroundColor: '#1976d2',
+        height: 100,
+        paddingTop: 20,
         alignItems: 'center',
     },
     addItemText: {
         fontSize: 20,
-        marginBottom: 30,
+        marginBottom: 40,
+        textAlign: 'center',
     },
     text: {
         color: Colors.white,
-        fontSize: 20,
+        fontSize: 30,
         fontStyle: 'italic',
         fontWeight: 'bold',
     },
     content: {
-        padding: 20,
+        padding: 40,
     },
     buttonsWrapper: {
+        marginTop: 20,
         flexDirection: 'row',
         justifyContent: 'center',
     },
-
     nextButton: {
         marginRight: 30,
     },

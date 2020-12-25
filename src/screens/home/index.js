@@ -63,8 +63,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
     },
     header: {
-        backgroundColor: Colors.black,
-        height: 150,
+        backgroundColor: '#1976d2',
+        height: 100,
         paddingTop: 20,
         alignItems: 'center',
     },
@@ -76,16 +76,17 @@ const styles = StyleSheet.create({
     },
     title: {
         color: Colors.dark,
-        fontSize: 20,
+        fontSize: 24,
         fontStyle: 'italic',
         fontWeight: 'bold',
         textAlign: 'center',
+        paddingBottom: 10,
     },
     content: {
         padding: 20,
     },
     scrollView: {
-        minHeight: 900,
+        paddingBottom: 200,
     },
 });
 

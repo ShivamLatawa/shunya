@@ -14,8 +14,8 @@ const AppNavigator = () => {
         <Tab.Navigator
             initialRouteName="Home"
             headerMode="none"
-            activeColor="#ffffff"
-            style={{backgroundColor: '#67baf6'}}>
+            backgroundColor="#1976d2"
+            activeColor="#ffffff">
             <Tab.Screen
                 name="Home"
                 component={HomeScreen}

@@ -1,11 +1,21 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {Button} from "react-native-material-ui";
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {StyleSheet} from 'react-native';
+import {Button} from 'react-native-material-ui';
 
-export const CustomButton = ({text, onPress, primary = true, accent = false}) => {
+export const CustomButton = ({
+    text,
+    onPress,
+    primary = true,
+    accent = false,
+}) => {
     return (
-        <Button raised primary={primary} accent={accent} text={text} onPress={onPress}/>
+        <Button
+            raised
+            primary={primary}
+            accent={accent}
+            text={text}
+            onPress={onPress}
+        />
     );
 };
 

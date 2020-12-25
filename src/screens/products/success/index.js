@@ -3,7 +3,6 @@ import React from 'react';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 import CustomButton from '../../../shared/CustomButton';
-import {NavigationActions, StackActions} from 'react-navigation';
 
 const ProductSuccess = ({navigation}) => {
     const onClose = () => {
@@ -46,9 +45,9 @@ const styles = StyleSheet.create({
     },
 
     header: {
-        backgroundColor: Colors.black,
-        height: 60,
-        paddingTop: 15,
+        backgroundColor: '#1976d2',
+        height: 100,
+        paddingTop: 20,
         alignItems: 'center',
     },
     addItemText: {

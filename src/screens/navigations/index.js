@@ -13,7 +13,7 @@ const RootNavigator = () => {
         <Stack.Navigator headerMode="none">
             <Stack.Screen name="SplashScreen" component={SplashScreen} />
             <Stack.Screen name="Auth" component={AuthNavigator} />
-            <Stack.Screen name="Products" component={AppNavigator} />
+            <Stack.Screen name="Home" component={AppNavigator} />
             <Stack.Screen name="Sell" component={SellProductNavigator} />
         </Stack.Navigator>
     );
