@@ -51,7 +51,7 @@ const RegisterScreen = ({navigation}) => {
 
         signUp(request)
             .then(() => navigation.navigate('Login'))
-            .catch((err) => console.log('err -->', err));
+            .catch((err) => console.error(err));
     };
 
     return (

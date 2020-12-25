@@ -9,7 +9,7 @@ const SplashScreen = ({navigation}) => {
             isAuthenticated()
                 .then((user) => {
                     if (user.role === 'farmer') {
-                        navigation.navigate('Auth');
+                        navigation.navigate('Home');
                     }
                 })
                 .catch((error) =>
