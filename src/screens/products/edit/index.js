@@ -6,8 +6,8 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {CustomButton} from '../../../shared/CustomButton';
 import {addProduct} from '../../../services/productService';
 
-const EditProduct = ({navigation}) => {
-    const {item, quantity, price, id} = navigation.getParam('product');
+const EditProduct = ({route, navigation}) => {
+    const {item, quantity, price, id} = route.params.product;
     const details = [item, quantity, price];
     const headers = ['Product Name', 'Quantity', 'Price/Kg'];
 

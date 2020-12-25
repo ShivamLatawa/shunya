@@ -1,24 +1,22 @@
-import {createAppContainer, createSwitchNavigator} from 'react-navigation';
+import React from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
 
-import AuthNavigator from './auth-navigator';
-import AppNavigator from './app-navigator';
-import {SplashScreen} from '../splash';
-import SellProductNavigator from './productNavigator';
+import AuthNavigator from './AuthNavigator';
+import AppNavigator from './AppNavigator';
+import SellProductNavigator from './ProductNavigator';
+import SplashScreen from '../splash';
 
-const RootNavigator = createSwitchNavigator(
-    {
-        SplashScreen: {
-            screen: SplashScreen,
-        },
-        Auth: {
-            screen: AuthNavigator,
-        },
-        App: AppNavigator,
-        Sell: SellProductNavigator,
-    },
-    {
-        initialRouteName: 'SplashScreen',
-    },
-);
+const Stack = createStackNavigator();
 
-export default createAppContainer(RootNavigator);
+const RootNavigator = () => {
+    return (
+        <Stack.Navigator headerMode="none">
+            <Stack.Screen name="SplashScreen" component={SplashScreen} />
+            <Stack.Screen name="Auth" component={AuthNavigator} />
+            <Stack.Screen name="Products" component={AppNavigator} />
+            <Stack.Screen name="Sell" component={SellProductNavigator} />
+        </Stack.Navigator>
+    );
+};
+
+export default RootNavigator;

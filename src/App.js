@@ -5,14 +5,17 @@
  * @format
  * @flow strict-local
  */
-
+import 'react-native-gesture-handler';
 import React from 'react';
-import Navigator from "./screens/navigations";
+import {NavigationContainer} from '@react-navigation/native';
 
+import RootNavigator from './screens/navigations';
 
-const App: () => React$Node = () => {
+const App = () => {
     return (
-        <Navigator />
+        <NavigationContainer>
+            <RootNavigator />
+        </NavigationContainer>
     );
 };
 

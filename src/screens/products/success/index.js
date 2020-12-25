@@ -7,13 +7,7 @@ import {NavigationActions, StackActions} from 'react-navigation';
 
 const ProductSuccess = ({navigation}) => {
     const onClose = () => {
-        navigation.dispatch(
-            StackActions.reset({
-                index: 0,
-                key: null,
-                actions: [NavigationActions.navigate({routeName: 'Products'})],
-            }),
-        );
+        navigation.navigate('Products');
     };
 
     return (

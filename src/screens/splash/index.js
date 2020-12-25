@@ -3,7 +3,7 @@ import {View, ActivityIndicator, StyleSheet, Text} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {isAuthenticated} from '../../services/authService';
 
-export const SplashScreen = ({navigation}) => {
+const SplashScreen = ({navigation}) => {
     useEffect(() => {
         setTimeout(() => {
             isAuthenticated()
