@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {View, ScrollView, StyleSheet, Text} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+
 import {
     getProductCategories,
     getProductDetails,
 } from '../../services/productService';
-
 import Product from '../products/product';
 
 const HomeScreen = () => {
@@ -13,7 +14,14 @@ const HomeScreen = () => {
     const [productCategories, setProductCategories] = useState([]);
 
     useEffect(() => {
-        getProductDetails().then((result) => setProductDetails(result));
+        const fetchData = async () => {
+            const user = await AsyncStorage.getItem('user');
+            getProductDetails(JSON.parse(user).id).then((result) => {
+                setProductDetails(result);
+            });
+        };
+
+        fetchData();
     }, []);
 
     useEffect(() => {
