@@ -1,4 +1,5 @@
 import React from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import {Table, Row, Rows} from 'react-native-table-component';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
@@ -16,18 +17,19 @@ const EditProduct = ({route, navigation}) => {
     };
 
     const onConfirm = () => {
-        const request = {
-            farmerId: 1,
-            productId: id,
-            quantity,
-            pricePerUnit: price,
-        };
+        AsyncStorage.getItem('user').then((user) => {
+            const request = {
+                // farmerId: JSON.parse(user).id,
+                farmerId: 1,
+                productId: id,
+                quantity,
+                pricePerUnit: price,
+            };
 
-        addProduct(request)
-            .then((response) => {
-                navigation.navigate('Success');
-            })
-            .catch((err) => console.error('something went wrong -->', error));
+            addProduct(request)
+                .then(() => navigation.navigate('Success'))
+                .catch((err) => console.error('something went wrong -->', err));
+        });
     };
 
     return (
