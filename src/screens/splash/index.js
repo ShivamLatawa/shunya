@@ -16,7 +16,9 @@ const SplashScreen = ({navigation}) => {
                     }
                 })
                 .catch((error) =>
-                    error.status === 403 ? navigation.navigate('Auth') : null,
+                    error.status === 403
+                        ? navigation.navigate('Auth')
+                        : navigation.navigate('Auth'),
                 );
         }, 2000);
     }, []);

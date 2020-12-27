@@ -1,21 +1,22 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {Button} from 'react-native-material-ui';
+import {Button} from 'react-native-paper';
 
 export const CustomButton = ({
     text,
     onPress,
-    primary = true,
-    accent = false,
+    mode = 'contained',
+    uppercase = true,
+    labelStyle = {text: {fontSize: 18, paddingTop: 5, paddingBottom: 8}},
 }) => {
     return (
         <Button
-            raised
-            primary={primary}
-            accent={accent}
-            text={text}
-            onPress={onPress}
-        />
+            labelStyle={labelStyle}
+            mode={mode}
+            uppercase={uppercase}
+            onPress={onPress}>
+            {text}
+        </Button>
     );
 };
 

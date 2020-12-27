@@ -1,33 +1,27 @@
 import React from 'react';
-import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
-import {TextInput, View} from "react-native";
-import {Icon} from "react-native-material-ui";
-
-
-import inputStyles from "../styles/input";
-import iconStyles from "../styles/icon";
-
+import {View} from 'react-native';
+import {TextInput} from 'react-native-paper';
 
 export const CustomTextInput = ({
-                                    icon,
-                                    placeholder,
-                                    secureTextEntry = false,
-                                    keyboardType = "default",
-                                    onChange = () => {
-                                    }
-                                }) => {
-
+    icon,
+    placeholder,
+    secureTextEntry = false,
+    keyboardType = 'default',
+    onChange = () => {},
+    style,
+    value = '',
+    onFocus = () => {},
+}) => {
     return (
-        <View style={inputStyles.input}>
-            <FontAwesomeIcon
-                icon={icon}
-                size={20}
-                style={iconStyles.icon}
-            />
+        <View style={style}>
+            <TextInput.Icon name={icon}></TextInput.Icon>
             <TextInput
-                placeholder={placeholder}
+                value={value}
+                onFocus={onFocus}
                 secureTextEntry={secureTextEntry}
+                type="outlined"
                 keyboardType={keyboardType}
+                label={placeholder}
                 onChangeText={onChange}
             />
         </View>

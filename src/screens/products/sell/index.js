@@ -1,20 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {Text, StyleSheet, View, ScrollView} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {Picker} from '@react-native-community/picker';
-import {
-    faListAlt,
-    faRupeeSign,
-    faWeight,
-} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {Picker} from '@react-native-picker/picker';
+import {faRupeeSign, faWeight} from '@fortawesome/free-solid-svg-icons';
 
 import {CustomTextInput} from '../../../shared/CustomTextInput';
 import {CustomButton} from '../../../shared/CustomButton';
 import {getProductCategories} from '../../../services/productService';
-
 import inputStyles from '../../../styles/input';
-import iconStyles from '../../../styles/icon';
 
 export const SellProduct = ({navigation}) => {
     const [item, setItem] = useState();
@@ -27,6 +20,10 @@ export const SellProduct = ({navigation}) => {
     }, []);
 
     const onNext = () => {
+        if (!item || !quantity || !price) {
+            alert('Please fill the details!');
+            return;
+        }
         const product = {
             item,
             quantity,
@@ -46,25 +43,17 @@ export const SellProduct = ({navigation}) => {
                 <Text style={styles.text}>Upload Items</Text>
             </View>
 
-            <ScrollView
-                style={styles.content}
-                contentContainerStyle={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                }}>
+            <View style={styles.content}>
                 <View style={styles.addItem}>
                     <Text style={styles.addItemText}>Sell Item</Text>
                 </View>
                 <View style={inputStyles.input}>
-                    <FontAwesomeIcon
-                        icon={faListAlt}
-                        size={20}
-                        style={iconStyles.icon}
-                    />
                     <Picker
                         selectedValue={item}
+                        mode="dropdown"
                         style={inputStyles.picker}
                         onValueChange={(value) => setItem(value)}>
+                        <Picker.Item label="Select Category" value="" />
                         {productCategories.map((product) => (
                             <Picker.Item
                                 key={product.id}
@@ -77,6 +66,8 @@ export const SellProduct = ({navigation}) => {
 
                 <View>
                     <CustomTextInput
+                        value={price}
+                        style={inputStyles.input}
                         icon={faRupeeSign}
                         placeholder="Price/Kg in INR"
                         keyboardType="numeric"
@@ -86,6 +77,8 @@ export const SellProduct = ({navigation}) => {
 
                 <View>
                     <CustomTextInput
+                        value={quantity}
+                        style={inputStyles.input}
                         icon={faWeight}
                         placeholder="Quantity in Kg"
                         keyboardType="numeric"
@@ -104,7 +97,7 @@ export const SellProduct = ({navigation}) => {
                         />
                     </View>
                 </View>
-            </ScrollView>
+            </View>
         </View>
     );
 };
@@ -133,6 +126,8 @@ const styles = StyleSheet.create({
     },
     content: {
         padding: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     buttonsWrapper: {
         marginTop: 20,

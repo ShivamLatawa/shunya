@@ -8,6 +8,7 @@ import CustomTextInput from '../../../shared/CustomTextInput';
 
 import CustomButton from '../../../shared/CustomButton';
 import styles from '../../../styles/login';
+import inputStyles from '../../../styles/input';
 import brandStyles from '../../../styles/brand';
 import {login} from '../../../services/authService';
 
@@ -40,6 +41,8 @@ const LoginScreen = ({navigation}) => {
             <Text style={brandStyles.brand}>Shunya</Text>
 
             <CustomTextInput
+                value={contactNumber}
+                style={inputStyles.input}
                 icon={faPhoneAlt}
                 placeholder="Contact Number"
                 keyboardType="numeric"
@@ -47,6 +50,8 @@ const LoginScreen = ({navigation}) => {
             />
 
             <CustomTextInput
+                value={password}
+                style={inputStyles.input}
                 icon={faLock}
                 placeholder="Password"
                 secureTextEntry={true}
@@ -57,6 +62,7 @@ const LoginScreen = ({navigation}) => {
 
             <View style={styles.createAccountWrapper}>
                 <Text style={styles.newAccountText}>Create a New Account?</Text>
+
                 <TouchableOpacity
                     onPress={() => navigation.navigate('Register')}>
                     <Text style={styles.signUp}>Sign Up</Text>

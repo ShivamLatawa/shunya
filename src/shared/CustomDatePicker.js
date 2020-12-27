@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-
 export const CustomDatePicker = ({show, setDateInInput, setShow}) => {
     const [date, setDate] = useState(new Date());
 
@@ -12,19 +11,7 @@ export const CustomDatePicker = ({show, setDateInInput, setShow}) => {
         setShow(false);
     };
 
-    return (
-        <>
-            {show && (
-                <DateTimePicker
-                    testID="dateTimePicker"
-                    value={date}
-                    mode="date"
-                    display="default"
-                    onChange={onChange}
-                />
-            )}
-        </>
-    );
+    return <>{show && <DateTimePicker value={date} onChange={onChange} />}</>;
 };
 
 export default CustomDatePicker;

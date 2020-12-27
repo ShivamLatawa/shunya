@@ -1,6 +1,5 @@
-import {StyleSheet} from "react-native";
-import {Colors} from "react-native/Libraries/NewAppScreen";
-
+import {StyleSheet} from 'react-native';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const loginScreenStyles = StyleSheet.create({
     container: {
@@ -11,15 +10,15 @@ const loginScreenStyles = StyleSheet.create({
     },
 
     newAccountText: {
-        fontSize: 12,
+        fontSize: 14,
         color: 'gray',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     },
 
     signUp: {
-        color: Colors.black,
+        color: '#6200ee',
         fontWeight: 'bold',
-        fontSize: 12,
+        fontSize: 14,
         marginLeft: 5,
     },
 

@@ -1,59 +1,63 @@
-import {faListAlt, faPlusCircle} from '@fortawesome/free-solid-svg-icons';
-import {Picker} from '@react-native-community/picker';
+import {Picker} from '@react-native-picker/picker';
 import React, {useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {Dialog, DialogDefaultActions} from 'react-native-material-ui';
+import {View, StyleSheet} from 'react-native';
 import CustomTextInput from '../../../shared/CustomTextInput';
-import inputStyles from '../../../styles/input';
-import iconStyles from '../../../styles/icon';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {Button, Dialog, Portal} from 'react-native-paper';
 
-const AddProductCategory = ({onAddProduct}) => {
+const AddProductCategory = ({onAddProduct, showAddProductDialog}) => {
     const [product, setProduct] = useState('');
-    const [productCategory, setProductCategory] = useState('Fruits');
+    const [productCategory, setProductCategory] = useState();
 
     return (
-        <Dialog style={styles.container}>
-            <Dialog.Title>
-                <Text>Add New Product</Text>
-            </Dialog.Title>
-            <Dialog.Content style={styles.content}>
-                <CustomTextInput
-                    icon={faPlusCircle}
-                    placeholder="Enter product name..."
-                    onChange={(value) => setProduct(value)}
-                />
-                <View style={inputStyles.input}>
-                    <FontAwesomeIcon
-                        icon={faListAlt}
-                        size={20}
-                        style={iconStyles.icon}
-                    />
-                    <Picker
-                        selectedValue={productCategory}
-                        style={inputStyles.picker}
-                        onValueChange={(value) => setProductCategory(value)}>
-                        <Picker.Item label="Fruits" value="fruits" />
-                        <Picker.Item label="Vegetables" value="vegetables" />
-                        <Picker.Item label="Cereals" value="cereals" />
-                        <Picker.Item label="Pulses" value="pulses" />
-                    </Picker>
-                </View>
-            </Dialog.Content>
-            <Dialog.Actions>
-                <DialogDefaultActions
-                    actions={['cancel', 'ok']}
-                    onActionPress={(action) =>
-                        onAddProduct(action, product, productCategory)
-                    }
-                />
-            </Dialog.Actions>
-        </Dialog>
+        <View>
+            <Portal>
+                <Dialog visible={showAddProductDialog}>
+                    <Dialog.Title>Add New Product</Dialog.Title>
+                    <Dialog.Content>
+                        <CustomTextInput
+                            value={product}
+                            style={{marginBottom: 20}}
+                            placeholder="Product"
+                            onChange={(value) => setProduct(value)}
+                        />
+                        <View>
+                            <Picker
+                                selectedValue={productCategory}
+                                mode="dropdown"
+                                onValueChange={(value) =>
+                                    setProductCategory(value)
+                                }>
+                                <Picker.Item label="Select Category" value="" />
+                                <Picker.Item label="Fruits" value="fruits" />
+                                <Picker.Item
+                                    label="Vegetables"
+                                    value="vegetables"
+                                />
+                                <Picker.Item label="Cereals" value="cereals" />
+                                <Picker.Item label="Pulses" value="pulses" />
+                            </Picker>
+                        </View>
+                    </Dialog.Content>
+                    <Dialog.Actions>
+                        <Button
+                            onPress={() =>
+                                onAddProduct('cancel', product, productCategory)
+                            }>
+                            Cancel
+                        </Button>
+                        <Button
+                            onPress={() =>
+                                onAddProduct('ok', product, productCategory)
+                            }>
+                            Ok
+                        </Button>
+                    </Dialog.Actions>
+                </Dialog>
+            </Portal>
+        </View>
     );
 };
 
-const styles = StyleSheet.create({
-    container: {},
-});
+const styles = StyleSheet.create({});
 
 export default AddProductCategory;

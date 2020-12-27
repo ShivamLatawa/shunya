@@ -1,10 +1,8 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import {ActionButton} from 'react-native-material-ui';
-import {faPlus, faRupeeSign} from '@fortawesome/free-solid-svg-icons';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {addProductCategory} from '../../services/productService';
-import TabBarComponent from '../../shared/TabBarComponent';
 import AddProductCategory from './add';
 
 const ProductsScreen = ({navigation}) => {
@@ -53,14 +51,10 @@ const ProductsScreen = ({navigation}) => {
                         style={{container: styles.actionButton}}
                     />
                 </View>
-
-                {showAddProductDialog && (
-                    <View style={styles.productContainer}>
-                        {showAddProductDialog && (
-                            <AddProductCategory onAddProduct={onAddProduct} />
-                        )}
-                    </View>
-                )}
+                <AddProductCategory
+                    showAddProductDialog={showAddProductDialog}
+                    onAddProduct={onAddProduct}
+                />
             </View>
         </>
     );
@@ -93,10 +87,6 @@ const styles = StyleSheet.create({
     addButton: {
         right: 0,
         top: 100,
-    },
-    productContainer: {
-        left: '15%',
-        top: '30%',
     },
 });
 

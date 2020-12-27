@@ -2,32 +2,20 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
     input: {
-        flexDirection: 'row',
-        height: 40,
-        width: 200,
-        borderColor: 'gray',
-        borderRadius: 50,
-        borderWidth: 1,
-        marginBottom: 30,
-        paddingLeft: 15,
+        marginBottom: 20,
+        textAlign: 'left',
+        width: 250,
     },
 
     dateInput: {
         height: 40,
-        width: 200,
-        borderColor: 'gray',
-        borderRadius: 50,
-        borderWidth: 1,
+        width: 250,
         marginBottom: 30,
-        paddingLeft: 15,
-        flexDirection: 'row',
     },
 
     picker: {
-        width: 160,
-        position: 'relative',
-        bottom: 7,
-        right: 5,
+        width: 250,
+        height: 60,
     },
 });
 
