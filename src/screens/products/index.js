@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
-import {ActionButton} from 'react-native-material-ui';
+import {FAB} from 'react-native-paper';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {addProductCategory} from '../../services/productService';
 import AddProductCategory from './add';
@@ -38,17 +38,17 @@ const ProductsScreen = ({navigation}) => {
                     <Text style={styles.text}>Shunya</Text>
                 </View>
                 <View style={styles.addButton}>
-                    <ActionButton
+                    <FAB
                         onPress={() => setShowAddProductDialog(true)}
-                        icon="add"
-                        style={{container: styles.actionButton}}
+                        icon="pencil-plus"
+                        style={styles.actionButton}
                     />
                 </View>
                 <View style={styles.sellButtonWrapper}>
-                    <ActionButton
-                        icon="credit-card"
+                    <FAB
+                        icon="currency-inr"
                         onPress={() => onSellProduct()}
-                        style={{container: styles.actionButton}}
+                        style={styles.actionButton}
                     />
                 </View>
                 <AddProductCategory
@@ -78,6 +78,10 @@ const styles = StyleSheet.create({
     },
     actionButton: {
         backgroundColor: '#f50057',
+        position: 'absolute',
+        margin: 16,
+        right: 0,
+        bottom: 0,
     },
     sellButtonWrapper: {
         position: 'relative',

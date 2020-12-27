@@ -5,7 +5,6 @@ import {faPhoneAlt} from '@fortawesome/free-solid-svg-icons/faPhoneAlt';
 import {faLock} from '@fortawesome/free-solid-svg-icons';
 
 import CustomTextInput from '../../../shared/CustomTextInput';
-
 import CustomButton from '../../../shared/CustomButton';
 import styles from '../../../styles/login';
 import inputStyles from '../../../styles/input';
