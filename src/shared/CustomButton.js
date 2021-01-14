@@ -7,7 +7,7 @@ export const CustomButton = ({
     onPress,
     mode = 'contained',
     uppercase = true,
-    labelStyle = {text: {fontSize: 18, paddingTop: 5, paddingBottom: 8}},
+    labelStyle,
 }) => {
     return (
         <Button

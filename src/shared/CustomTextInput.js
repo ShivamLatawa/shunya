@@ -3,7 +3,6 @@ import {View} from 'react-native';
 import {TextInput} from 'react-native-paper';
 
 export const CustomTextInput = ({
-    icon,
     placeholder,
     secureTextEntry = false,
     keyboardType = 'default',
@@ -14,7 +13,6 @@ export const CustomTextInput = ({
 }) => {
     return (
         <View style={style}>
-            <TextInput.Icon name={icon}></TextInput.Icon>
             <TextInput
                 value={value}
                 onFocus={onFocus}
