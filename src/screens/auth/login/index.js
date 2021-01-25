@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import {SafeAreaView, Text, View, TouchableOpacity} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import {faPhoneAlt} from '@fortawesome/free-solid-svg-icons/faPhoneAlt';
-import {faLock} from '@fortawesome/free-solid-svg-icons';
 
 import CustomTextInput from '../../../shared/CustomTextInput';
 import CustomButton from '../../../shared/CustomButton';
@@ -42,7 +40,6 @@ const LoginScreen = ({navigation}) => {
             <CustomTextInput
                 value={contactNumber}
                 style={inputStyles.input}
-                icon={faPhoneAlt}
                 placeholder="Contact Number"
                 keyboardType="numeric"
                 onChange={(value) => setContactNumber(value)}
@@ -51,7 +48,6 @@ const LoginScreen = ({navigation}) => {
             <CustomTextInput
                 value={password}
                 style={inputStyles.input}
-                icon={faLock}
                 placeholder="Password"
                 secureTextEntry={true}
                 onChange={(value) => setPassword(value)}

@@ -1,48 +1,19 @@
 import React from 'react';
-import {
-    ScrollView,
-    Text, View,
-} from 'react-native';
-import AsyncStorage from "@react-native-community/async-storage";
-import {getProductDetails} from "../../services/productService";
-import {getOrderDetails} from "../../services/orderService";
-import {useEffect} from "react/cjs/react.production.min";
-import Product from "../products/product";
-
+import {View, ScrollView, StyleSheet, Text} from 'react-native';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import Order from './order';
 
 const OrdersScreen = () => {
-    const [orderDetails, setOrderDetails] = useState([]);
-    const [orderCategories, setOrderCategories] = useState([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const user = await AsyncStorage.getItem('user');
-            getOrderDetails()(JSON.parse(user).id).then((result) => {
-                setOrderDetails(result);
-            });
-        };
-
-        fetchData();
-    }, []);
-
     const renderOrderDetails = () => {
-        return (
-            orderCategories.length > 0 &&
-            orderDetails.map((orderDetail) => {
-                const orderCategory = orderCategories.find(
-                    (category) => orderDetail.orderId === category.id,
-                );
-
-                const product = {
-                    id: orderDetail.id,
-                    quantity: orderDetail.quantity,
-                    price: orderDetail.pricePerUnit,
-                    name: orderCategory.name,
-                };
-
-                return <Product key={product.id} product={product}></Product>;
-            })
-        );
+        const order = {
+            id: 1,
+            farmerId: 1,
+            productDetailsId: 1,
+            vendorId: 1,
+            deliveryLocation: 'gurugram',
+            delivered: false,
+        };
+        return <Order order={order} />;
     };
 
     return (
@@ -53,7 +24,7 @@ const OrdersScreen = () => {
                 </View>
 
                 <ScrollView style={styles.content}>
-                    <Text style={styles.title}>Orders till now</Text>
+                    <Text style={styles.title}>Order Details</Text>
                     <ScrollView style={styles.scrollView}>
                         {renderOrderDetails()}
                     </ScrollView>
@@ -63,5 +34,36 @@ const OrdersScreen = () => {
     );
 };
 
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'column',
+    },
+    header: {
+        backgroundColor: '#1976d2',
+        height: 100,
+        paddingTop: 20,
+        alignItems: 'center',
+    },
+    text: {
+        color: Colors.white,
+        fontSize: 30,
+        fontStyle: 'italic',
+        fontWeight: 'bold',
+    },
+    title: {
+        color: Colors.dark,
+        fontSize: 24,
+        fontStyle: 'italic',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        paddingBottom: 10,
+    },
+    content: {
+        padding: 20,
+    },
+    scrollView: {
+        paddingBottom: 200,
+    },
+});
 
 export default OrdersScreen;
