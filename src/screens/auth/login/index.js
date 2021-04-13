@@ -7,11 +7,13 @@ import CustomButton from '../../../shared/CustomButton';
 import styles from '../../../styles/login';
 import inputStyles from '../../../styles/input';
 import brandStyles from '../../../styles/brand';
-import {login} from '../../../services/authService';
+import {getUserInfo, login} from '../../../services/authService';
+import {AuthContext} from '../../../context/AuthContext';
 
 const LoginScreen = ({navigation}) => {
     const [contactNumber, setContactNumber] = useState();
     const [password, setPassword] = useState();
+    const {signIn} = React.useContext(AuthContext);
 
     const onLogin = () => {
         if (!contactNumber || !password) {
@@ -28,9 +30,15 @@ const LoginScreen = ({navigation}) => {
             .then((response) => {
                 const authToken = response.headers.get('authorization');
                 AsyncStorage.setItem('user_token', authToken);
-                navigation.navigate('Home');
+
+                getUserInfo()
+                    .then((user) => {
+                        AsyncStorage.setItem('user', JSON.stringify(user));
+                        signIn(user);
+                    })
+                    .catch(() => {});
             })
-            .catch(() => alert('Invalid login!'));
+            .catch(() => alert('Invalid credentials!!'));
     };
 
     return (

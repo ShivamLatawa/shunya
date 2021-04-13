@@ -1,28 +1,8 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {View, ActivityIndicator, StyleSheet, Text} from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-import {isAuthenticated} from '../../services/authService';
-
 const SplashScreen = ({navigation}) => {
-    useEffect(() => {
-        setTimeout(() => {
-            isAuthenticated()
-                .then((user) => {
-                    if (user.role === 'farmer') {
-                        AsyncStorage.setItem('user', JSON.stringify(user));
-                        navigation.navigate('Home');
-                    }
-                })
-                .catch((error) =>
-                    error.status === 403
-                        ? navigation.navigate('Auth')
-                        : navigation.navigate('Auth'),
-                );
-        }, 2000);
-    }, []);
-
     return (
         <View style={styles.container}>
             <Text style={styles.brand}>Shunya</Text>

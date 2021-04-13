@@ -13,6 +13,6 @@ export const login = async (body) => {
     return await client(LOGIN_URL, POST_METHOD, body);
 };
 
-export const isAuthenticated = async () => {
+export const getUserInfo = async () => {
     return await client(USERS_URL, GET_METHOD);
 };
