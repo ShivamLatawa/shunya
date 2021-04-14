@@ -16,7 +16,7 @@ const VendorHomeScreen = () => {
     useEffect(() => {
         const fetchData = async () => {
             const user = await AsyncStorage.getItem('user');
-            getProductDetails(JSON.parse(user).id).then((result) => {
+            getProductDetails().then((result) => {
                 setProductDetails(result);
             });
         };

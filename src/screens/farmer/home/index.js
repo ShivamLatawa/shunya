@@ -16,7 +16,7 @@ const HomeScreen = () => {
     useEffect(() => {
         const fetchData = async () => {
             const user = await AsyncStorage.getItem('user');
-            getProductDetails(JSON.parse(user).id).then((result) => {
+            getProductDetailsForFarmer(JSON.parse(user).id).then((result) => {
                 setProductDetails(result);
             });
         };
