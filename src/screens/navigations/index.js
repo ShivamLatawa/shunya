@@ -22,7 +22,7 @@ const RootNavigator = () => {
                         ...prevState,
                         userToken: action.token,
                         isLoading: false,
-                        userRole: 'vendor',
+                        userRole: action.userRole,
                     };
                 case 'SIGN_IN':
                     return {

@@ -17,7 +17,7 @@ const VendorHomeScreen = () => {
         const fetchData = async () => {
             const user = await AsyncStorage.getItem('user');
             getProductDetails(JSON.parse(user).id).then((result) => {
-                setProductDetailßs(result);
+                setProductDetails(result);
             });
         };
 
