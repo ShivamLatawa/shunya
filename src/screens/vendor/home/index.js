@@ -6,11 +6,10 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {
     getProductCategories,
     getProductDetails,
-    getProductDetailsForFarmer,
-} from '../../services/productService';
-import Product from '../products/product';
+} from '../../../services/productService';
+import Product from '../../farmer/products/product';
 
-const HomeScreen = () => {
+const VendorHomeScreen = () => {
     const [productDetails, setProductDetails] = useState([]);
     const [productCategories, setProductCategories] = useState([]);
 
@@ -18,7 +17,7 @@ const HomeScreen = () => {
         const fetchData = async () => {
             const user = await AsyncStorage.getItem('user');
             getProductDetails(JSON.parse(user).id).then((result) => {
-                setProductDetails(result);
+                setProductDetailßs(result);
             });
         };
 
@@ -99,4 +98,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default HomeScreen;
+export default VendorHomeScreen;

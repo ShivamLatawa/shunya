@@ -1,7 +1,7 @@
 import React from 'react';
 import {Linking, StyleSheet} from 'react-native';
 import {Card, Divider, Title, Paragraph} from 'react-native-paper';
-import CustomButton from '../../../shared/CustomButton';
+import CustomButton from '../../../../shared/CustomButton';
 
 const Order = ({order}) => {
     const shareLocation = () => {

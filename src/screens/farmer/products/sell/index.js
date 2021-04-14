@@ -4,10 +4,10 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {Picker} from '@react-native-picker/picker';
 import {faRupeeSign, faWeight} from '@fortawesome/free-solid-svg-icons';
 
-import {CustomTextInput} from '../../../shared/CustomTextInput';
-import {CustomButton} from '../../../shared/CustomButton';
-import {getProductCategories} from '../../../services/productService';
-import inputStyles from '../../../styles/input';
+import {CustomTextInput} from '../../../../shared/CustomTextInput';
+import {CustomButton} from '../../../../shared/CustomButton';
+import {getProductCategories} from '../../../../services/productService';
+import inputStyles from '../../../../styles/input';
 
 export const SellProduct = ({navigation}) => {
     const [item, setItem] = useState();

@@ -2,14 +2,14 @@ import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
-import HomeScreen from '../home';
-import OrdersScreen from '../orders';
-import ProductsScreen from '../products';
-import SupportScreen from '../support';
+import HomeScreen from '../farmer/home';
+import OrdersScreen from '../farmer/orders';
+import ProductsScreen from '../farmer/products';
+import SupportScreen from '../farmer/support';
 
 const Tab = createMaterialBottomTabNavigator();
 
-const AppNavigator = () => {
+const FarmerFlowNavigator = () => {
     return (
         <Tab.Navigator
             initialRouteName="Home"
@@ -76,4 +76,4 @@ const AppNavigator = () => {
     );
 };
 
-export default AppNavigator;
+export default FarmerFlowNavigator;

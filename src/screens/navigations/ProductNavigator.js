@@ -1,9 +1,9 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import SellProduct from '../products/sell';
-import EditProduct from '../products/edit';
-import ProductSuccess from '../products/success';
+import SellProduct from '../farmer/products/sell';
+import EditProduct from '../farmer/products/edit';
+import ProductSuccess from '../farmer/products/success';
 
 const Stack = createStackNavigator();
 

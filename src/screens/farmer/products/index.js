@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import {FAB} from 'react-native-paper';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {addProductCategory} from '../../services/productService';
+import {addProductCategory} from '../../../services/productService';
 import AddProductCategory from './add';
 
 const ProductsScreen = ({navigation}) => {
@@ -19,6 +19,7 @@ const ProductsScreen = ({navigation}) => {
         }
 
         if (!productCategory || !product) {
+            ß;
             alert('Please fill the details!');
             return;
         }

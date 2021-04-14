@@ -6,8 +6,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {
     getProductCategories,
     getProductDetails,
-    getProductDetailsForFarmer,
-} from '../../services/productService';
+} from '../../../services/productService';
 import Product from '../products/product';
 
 const HomeScreen = () => {

@@ -1,8 +1,9 @@
 import {Picker} from '@react-native-picker/picker';
 import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
-import CustomTextInput from '../../../shared/CustomTextInput';
 import {Button, Dialog, Portal} from 'react-native-paper';
+
+import CustomTextInput from '../../../../shared/CustomTextInput';
 
 const AddProductCategory = ({onAddProduct, showAddProductDialog}) => {
     const [product, setProduct] = useState('');

@@ -2,7 +2,7 @@ import {Text, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-import CustomButton from '../../../shared/CustomButton';
+import CustomButton from '../../../../shared/CustomButton';
 
 const ProductSuccess = ({navigation}) => {
     const onClose = () => {

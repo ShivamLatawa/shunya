@@ -4,8 +4,8 @@ import {View, Text, StyleSheet} from 'react-native';
 import {DataTable} from 'react-native-paper';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-import {CustomButton} from '../../../shared/CustomButton';
-import {addProduct} from '../../../services/productService';
+import {CustomButton} from '../../../../shared/CustomButton';
+import {addProduct} from '../../../../services/productService';
 
 const EditProduct = ({route, navigation}) => {
     const {item, quantity, price, id} = route.params.product;
