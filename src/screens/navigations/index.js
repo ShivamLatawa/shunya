@@ -72,6 +72,11 @@ const RootNavigator = () => {
                 .catch(() => {
                     AsyncStorage.setItem('user_token', null);
                     AsyncStorage.setItem('user', null);
+                    dispatch({
+                        type: 'RESTORE_TOKEN',
+                        token: userToken,
+                        userRole: userToken,
+                    });
                 });
         }, 2000);
     }, []);
