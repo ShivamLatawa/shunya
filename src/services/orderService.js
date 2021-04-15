@@ -16,6 +16,10 @@ export const getOrderDetailsForFarmer = async (id) => {
     return await client(`${PRODUCT_DETAILS_URL}/farmer?id=${id}`, GET_METHOD);
 };
 
+export const getOrderDetailsForVendor = async (id) => {
+    return await client(`${PRODUCT_DETAILS_URL}/vendor?id=${id}`, GET_METHOD);
+};
+
 export const addOrder = async (body) => {
     return await client(PRODUCT_DETAILS_URL, POST_METHOD, body);
 };
