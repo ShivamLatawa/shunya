@@ -26,6 +26,20 @@ const VendorFlowNavigator = () => {
                     ),
                 }}
             />
+            <Tab.Screen
+                name="VendorHome"
+                component={OrdersScreen}
+                options={{
+                    tabBarLabel: 'Orders',
+                    tabBarIcon: ({color}) => (
+                        <MaterialCommunityIcons
+                            name="cart"
+                            color={color}
+                            size={26}
+                        />
+                    ),
+                }}
+            />
         </Tab.Navigator>
     );
 };
