@@ -17,6 +17,8 @@ const VendorHomeScreen = () => {
         const fetchData = async () => {
             const user = await AsyncStorage.getItem('user');
             getProductDetails().then((result) => {
+                console.log("productDetails ----------"+result[0]);
+                console.log("productDetails ----------"+result.length);
                 setProductDetails(result);
             });
         };
@@ -29,13 +31,15 @@ const VendorHomeScreen = () => {
     }, []);
 
     const renderProductDetails = () => {
+        console.log("productDetails ----------"+productDetails[0]);
+
         return (
-            productCategories.length > 0 &&
+        productCategories.length > 0 &&
             productDetails.map((productDetail) => {
                 const productCategory = productCategories.find(
                     (category) => productDetail.productId === category.id,
                 );
-
+                console.log("productDetail-----------------"+ productDetail)
                 const product = {
                     id: productDetail.id,
                     quantity: productDetail.quantity,

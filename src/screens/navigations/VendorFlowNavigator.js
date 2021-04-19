@@ -2,6 +2,7 @@ import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import VendorHomeScreen from '../vendor/home';
+import OrdersScreen from "../vendor/orders";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -27,7 +28,7 @@ const VendorFlowNavigator = () => {
                 }}
             />
             <Tab.Screen
-                name="VendorHome"
+                name="Orders"
                 component={OrdersScreen}
                 options={{
                     tabBarLabel: 'Orders',
