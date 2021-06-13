@@ -14,7 +14,7 @@ import {addOrder} from '../../../services/orderService';
 const VendorHomeScreen = () => {
     const [productDetails, setProductDetails] = useState([]);
     const [productCategories, setProductCategories] = useState([]);
-    const [accepted, setAccepted] = useState(true);
+    const [orderAccepted, setOrderAccepted] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -47,24 +47,27 @@ const VendorHomeScreen = () => {
 
                 return (
                     <Product key={product.id} product={product}>
-                        {!accepted ? (
+                        {!orderAccepted ? (
                             <>
                                 <CustomButton
                                     text="Accept"
+                                    labelStyle={styles.btn}
                                     onPress={() => onAccept(product)}
+                                />
+                            </>
+                        ) : (
+                            <>
+                                <CustomButton
+                                    text="Order accepted"
+                                    mode="default"
                                 />
                                 <CustomButton
                                     mode="default"
                                     text="Decline"
                                     labelStyle={styles.declineBtn}
-                                    onPress={onDecline}
+                                    onPress={() => onDecline(product)}
                                 />
                             </>
-                        ) : (
-                            <CustomButton
-                                text="Order Accepted"
-                                mode="default"
-                            />
                         )}
                     </Product>
                 );
@@ -82,10 +85,12 @@ const VendorHomeScreen = () => {
         };
         const result = await addOrder(request);
         if (result.id) {
-            setAccepted(true);
+            setOrderAccepted(true);
         }
     };
-    const onDecline = () => {};
+    const onDecline = (product) => {
+        setOrderAccepted(false);
+    };
 
     return (
         <>
@@ -138,6 +143,7 @@ const styles = StyleSheet.create({
     declineBtn: {
         color: 'red',
     },
+    btn: {},
 });
 
 export default VendorHomeScreen;

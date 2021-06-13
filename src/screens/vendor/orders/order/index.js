@@ -1,30 +1,50 @@
 import React from 'react';
 import {Linking, StyleSheet} from 'react-native';
 import {Card, Divider, Title, Paragraph} from 'react-native-paper';
+
 import CustomButton from '../../../../shared/CustomButton';
+import {getUserInfo} from '../../../../services/authService';
 
 const Order = ({order}) => {
-    const shareLocation = () => {
-        const whatsAppMsg = 'test';
-        const mobileNumber = '8800900134';
+    const shareLocation = async () => {
+        console.log({order});
+        // TODO: need an api to get the user info with id to share whatsapp location
+        const user = await getUserInfo(order.farmerId);
+
+        const whatsAppMsg = `Location details for the order 
+        ${order.name}
+        ${order.price}
+        ${order.quantity}
+        `;
+        const mobileNumber = user.mobileNo;
+
+        console.log({user, mobileNumber, whatsAppMsg});
+
         let url =
             'whatsapp://send?text=' + whatsAppMsg + '&phone=91' + mobileNumber;
         Linking.openURL(url)
-            .then((data) => {
-                console.log('WhatsApp Opened');
+            .then(() => {
+                console.log('Success');
             })
             .catch(() => {
-                alert('Make sure Whatsapp installed on your device');
+                alert(
+                    'Make sure Whatsapp is installed on your device to share location',
+                );
             });
     };
 
     return (
         <Card style={styles.container}>
             <Card.Content>
-                <Title style={styles.name}>Apples</Title>
+                <Title style={styles.name}>{order.name}</Title>
                 <Divider />
+                <Paragraph style={styles.info}>Price: {order.price}</Paragraph>
                 <Paragraph style={styles.info}>
-                    Vendor: {order.vendorId}
+                    Quantity: {order.quantity}
+                </Paragraph>
+                <Paragraph style={styles.deliveryStatus}>
+                    Delivery Status:{' '}
+                    {order.status ? 'Delivered' : 'In Progress'}
                 </Paragraph>
                 <CustomButton
                     mode="default"
@@ -49,6 +69,12 @@ const styles = StyleSheet.create({
     info: {
         marginTop: 10,
         fontSize: 18,
+        textAlign: 'center',
+    },
+    deliveryStatus: {
+        fontSize: 18,
+        color: 'green',
+        marginTop: 10,
         textAlign: 'center',
     },
 });

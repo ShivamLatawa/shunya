@@ -1,18 +1,41 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, ScrollView, StyleSheet, Text} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import AsyncStorage from '@react-native-community/async-storage';
+import uniqWith from 'lodash.uniqwith';
+import isEqual from 'lodash.isequal';
+
 import Order from './order';
-import AsyncStorage from "@react-native-community/async-storage";
-import {getOrderDetailsForVendor} from "../../../services/orderService";
+import {getOrderDetailsForVendor} from '../../../services/orderService';
+import {getProductDetails} from '../../../services/productService';
 
 const OrdersScreen = () => {
     const [orderDetails, setOrderDetails] = useState([]);
+    const [productDetails, setProductDetails] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             const user = await AsyncStorage.getItem('user');
-            getOrderDetailsForVendor(user.get('id')).then((result) => {
-                setOrderDetails(result);
+            getOrderDetailsForVendor(JSON.parse(user).id).then((result) => {
+                const uniqueOrders = uniqWith(
+                    result,
+                    (order, anotherOrder) =>
+                        order.farmerId === anotherOrder.farmerId &&
+                        order.productDetailsId ===
+                            anotherOrder.productDetailsId &&
+                        order.vendorId === anotherOrder.vendorId,
+                );
+                setOrderDetails(uniqueOrders);
+            });
+        };
+
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            getProductDetails().then((result) => {
+                setProductDetails(result);
             });
         };
 
@@ -21,16 +44,22 @@ const OrdersScreen = () => {
 
     const renderOrderDetails = () => {
         return (
-            orderDetails.map((orderDetail) => {
+            productDetails.length > 0 &&
+            orderDetails.map((order) => {
+                const productDetail = productDetails.find(
+                    (product) => order.productDetailsId === product.id,
+                );
 
-                const order = {
-                    id: orderDetail.id,
-                    quantity: orderDetail.quantity,
-                    price: orderDetail.pricePerUnit,
-                    name: orderDetail.name,
+                const orderInfo = {
+                    id: order.id,
+                    quantity: productDetail.quantity,
+                    price: productDetail.pricePerUnit,
+                    name: productDetail.productCategory.name,
+                    status: order.delivered,
+                    farmerId: order.farmerId,
                 };
 
-                return <Order key={order.id} order={order}></Order>;
+                return <Order key={order.id} order={orderInfo}></Order>;
             })
         );
     };
