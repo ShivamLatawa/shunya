@@ -8,17 +8,17 @@ import {
     getProductDetails,
 } from '../../../services/productService';
 import Product from '../../farmer/products/product';
+import CustomButton from '../../../shared/CustomButton';
+import {addOrder} from '../../../services/orderService';
 
 const VendorHomeScreen = () => {
     const [productDetails, setProductDetails] = useState([]);
     const [productCategories, setProductCategories] = useState([]);
+    const [accepted, setAccepted] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
-            const user = await AsyncStorage.getItem('user');
             getProductDetails().then((result) => {
-                console.log("productDetails ----------"+result[0]);
-                console.log("productDetails ----------"+result.length);
                 setProductDetails(result);
             });
         };
@@ -31,26 +31,61 @@ const VendorHomeScreen = () => {
     }, []);
 
     const renderProductDetails = () => {
-        console.log("productDetails ----------"+productDetails[0]);
-
         return (
-        productCategories.length > 0 &&
+            productCategories.length > 0 &&
             productDetails.map((productDetail) => {
                 const productCategory = productCategories.find(
-                    (category) => productDetail.productId === category.id,
+                    (category) => productDetail.id === category.id,
                 );
-                console.log("productDetail-----------------"+ productDetail)
                 const product = {
                     id: productDetail.id,
                     quantity: productDetail.quantity,
                     price: productDetail.pricePerUnit,
                     name: productCategory.name,
+                    farmerId: productDetail.farmerId,
                 };
 
-                return <Product key={product.id} product={product}></Product>;
+                return (
+                    <Product key={product.id} product={product}>
+                        {!accepted ? (
+                            <>
+                                <CustomButton
+                                    text="Accept"
+                                    onPress={() => onAccept(product)}
+                                />
+                                <CustomButton
+                                    mode="default"
+                                    text="Decline"
+                                    labelStyle={styles.declineBtn}
+                                    onPress={onDecline}
+                                />
+                            </>
+                        ) : (
+                            <CustomButton
+                                text="Order Accepted"
+                                mode="default"
+                            />
+                        )}
+                    </Product>
+                );
             })
         );
     };
+
+    const onAccept = async (product) => {
+        const user = await AsyncStorage.getItem('user');
+        const request = {
+            farmerId: product.farmerId,
+            productDetailsId: product.id,
+            vendorId: JSON.parse(user).id,
+            deliveryLocation: 'Gurugram',
+        };
+        const result = await addOrder(request);
+        if (result.id) {
+            setAccepted(true);
+        }
+    };
+    const onDecline = () => {};
 
     return (
         <>
@@ -99,6 +134,9 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         paddingBottom: 200,
+    },
+    declineBtn: {
+        color: 'red',
     },
 });
 

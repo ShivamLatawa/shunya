@@ -1,8 +1,8 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {Card, Divider, Title, Paragraph} from 'react-native-paper';
 
-export const Product = ({product}) => {
+export const Product = ({product, children}) => {
     return (
         <Card style={styles.container}>
             <Card.Content>
@@ -15,6 +15,7 @@ export const Product = ({product}) => {
                     Price/Kg: {product.price}
                 </Paragraph>
             </Card.Content>
+            {children && <View style={styles.btns}>{children}</View>}
         </Card>
     );
 };
@@ -33,6 +34,9 @@ const styles = StyleSheet.create({
         marginTop: 10,
         fontSize: 18,
         textAlign: 'center',
+    },
+    btns: {
+        marginTop: 20,
     },
 });
 

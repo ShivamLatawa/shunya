@@ -17,14 +17,17 @@ const EditProduct = ({route, navigation}) => {
     };
 
     const onConfirm = () => {
+        console.log('initialising request');
         AsyncStorage.getItem('user').then((user) => {
+            console.log('user', JSON.parse(user));
             const request = {
-                // farmerId: JSON.parse(user).id,
-                farmerId: 1,
+                farmerId: JSON.parse(user).id,
                 productId: id,
                 quantity,
                 pricePerUnit: price,
             };
+
+            console.log('request', request);
 
             addProduct(request)
                 .then(() => navigation.navigate('Success'))

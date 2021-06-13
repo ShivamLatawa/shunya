@@ -1,20 +1,28 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
+
 import {View, ScrollView, StyleSheet, Text} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {getOrderDetailsForFarmer} from '../../../services/orderService';
 import Order from './order';
 
 const OrdersScreen = () => {
+    const [orders, setOrders] = useState([]);
     const renderOrderDetails = () => {
-        const order = {
-            id: 1,
-            farmerId: 1,
-            productDetailsId: 1,
-            vendorId: 1,
-            deliveryLocation: 'gurugram',
-            delivered: false,
-        };
-        return <Order order={order} />;
+        console.log({orders});
+        return orders.map((order) => <Order order={order} />);
     };
+
+    useEffect(() => {
+        const fetchOrders = async () => {
+            const user = await AsyncStorage.getItem('user');
+            const orders = await getOrderDetailsForFarmer(JSON.parse(user).id);
+
+            setOrders(orders);
+        };
+
+        fetchOrders();
+    }, []);
 
     return (
         <>

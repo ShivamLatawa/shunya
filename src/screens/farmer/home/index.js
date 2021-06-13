@@ -5,7 +5,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 import {
     getProductCategories,
-    getProductDetails,
+    getProductDetailsForFarmer,
 } from '../../../services/productService';
 import Product from '../products/product';
 
@@ -33,7 +33,7 @@ const HomeScreen = () => {
             productCategories.length > 0 &&
             productDetails.map((productDetail) => {
                 const productCategory = productCategories.find(
-                    (category) => productDetail.productId === category.id,
+                    (category) => productDetail.id === category.id,
                 );
 
                 const product = {

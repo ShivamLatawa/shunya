@@ -58,7 +58,7 @@ const FarmerFlowNavigator = () => {
                     ),
                 }}
             />
-            <Tab.Screen
+            {/* <Tab.Screen
                 name="Support"
                 component={SupportScreen}
                 options={{
@@ -71,7 +71,7 @@ const FarmerFlowNavigator = () => {
                         />
                     ),
                 }}
-            />
+            /> */}
         </Tab.Navigator>
     );
 };
