@@ -1,16 +1,47 @@
 import React, {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
+import uniqWith from 'lodash.uniqwith';
 
 import {View, ScrollView, StyleSheet, Text} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {getOrderDetailsForFarmer} from '../../../services/orderService';
 import Order from './order';
+import {getProductDetails} from '../../../services/productService';
 
 const OrdersScreen = () => {
     const [orders, setOrders] = useState([]);
+    const [productDetails, setProductDetails] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            getProductDetails().then((result) => {
+                setProductDetails(result);
+            });
+        };
+
+        fetchData();
+    }, []);
+
     const renderOrderDetails = () => {
-        console.log({orders});
-        return orders.map((order) => <Order order={order} />);
+        return (
+            productDetails.length > 0 &&
+            orders.map((order) => {
+                const productDetail = productDetails.find(
+                    (product) => order.productDetailsId === product.id,
+                );
+
+                const orderInfo = {
+                    id: order.id,
+                    quantity: productDetail.quantity,
+                    price: productDetail.pricePerUnit,
+                    name: productDetail.productCategory.name,
+                    status: order.delivered,
+                    vendorId: order.vendorId,
+                };
+
+                return <Order key={order.id} order={orderInfo} />;
+            })
+        );
     };
 
     useEffect(() => {
@@ -18,7 +49,15 @@ const OrdersScreen = () => {
             const user = await AsyncStorage.getItem('user');
             const orders = await getOrderDetailsForFarmer(JSON.parse(user).id);
 
-            setOrders(orders);
+            const uniqueOrders = uniqWith(
+                orders,
+                (order, anotherOrder) =>
+                    order.farmerId === anotherOrder.farmerId &&
+                    order.productDetailsId === anotherOrder.productDetailsId &&
+                    order.vendorId === anotherOrder.vendorId,
+            );
+
+            setOrders(uniqueOrders);
         };
 
         fetchOrders();

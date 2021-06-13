@@ -6,10 +6,16 @@ const Order = ({order}) => {
     return (
         <Card style={styles.container}>
             <Card.Content>
-                <Title style={styles.name}>Apples</Title>
+                <Title style={styles.name}>{order.name}</Title>
+
                 <Divider />
+                <Paragraph style={styles.info}>Price: {order.price}</Paragraph>
                 <Paragraph style={styles.info}>
-                    Vendor: {order.vendorId}
+                    Quantity: {order.quantity}
+                </Paragraph>
+                <Paragraph style={styles.deliveryStatus}>
+                    Delivery Status:{' '}
+                    {order.status ? 'Delivered' : 'In Progress'}
                 </Paragraph>
             </Card.Content>
         </Card>
@@ -30,6 +36,12 @@ const styles = StyleSheet.create({
         marginTop: 10,
         fontSize: 18,
         textAlign: 'center',
+    },
+    deliveryStatus: {
+        marginTop: 10,
+        fontSize: 18,
+        textAlign: 'center',
+        color: 'green',
     },
 });
 

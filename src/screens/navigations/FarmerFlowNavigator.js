@@ -6,6 +6,7 @@ import HomeScreen from '../farmer/home';
 import OrdersScreen from '../farmer/orders';
 import ProductsScreen from '../farmer/products';
 import SupportScreen from '../farmer/support';
+import Logout from '../auth/logout';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -58,20 +59,20 @@ const FarmerFlowNavigator = () => {
                     ),
                 }}
             />
-            {/* <Tab.Screen
-                name="Support"
-                component={SupportScreen}
+            <Tab.Screen
+                name="Logout"
+                component={Logout}
                 options={{
-                    tabBarLabel: 'Support',
+                    tabBarLabel: 'Logout',
                     tabBarIcon: ({color}) => (
                         <MaterialCommunityIcons
-                            name="face-agent"
+                            name="logout"
                             color={color}
                             size={26}
                         />
                     ),
                 }}
-            /> */}
+            />
         </Tab.Navigator>
     );
 };

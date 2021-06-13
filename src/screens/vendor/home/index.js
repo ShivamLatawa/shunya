@@ -3,17 +3,13 @@ import {View, ScrollView, StyleSheet, Text} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-import {
-    getProductCategories,
-    getProductDetails,
-} from '../../../services/productService';
+import {getProductDetails} from '../../../services/productService';
 import Product from '../../farmer/products/product';
 import CustomButton from '../../../shared/CustomButton';
 import {addOrder} from '../../../services/orderService';
 
 const VendorHomeScreen = () => {
     const [productDetails, setProductDetails] = useState([]);
-    const [productCategories, setProductCategories] = useState([]);
     const [orderAccepted, setOrderAccepted] = useState(false);
 
     useEffect(() => {
@@ -26,53 +22,43 @@ const VendorHomeScreen = () => {
         fetchData();
     }, []);
 
-    useEffect(() => {
-        getProductCategories().then((result) => setProductCategories(result));
-    }, []);
-
     const renderProductDetails = () => {
-        return (
-            productCategories.length > 0 &&
-            productDetails.map((productDetail) => {
-                const productCategory = productCategories.find(
-                    (category) => productDetail.id === category.id,
-                );
-                const product = {
-                    id: productDetail.id,
-                    quantity: productDetail.quantity,
-                    price: productDetail.pricePerUnit,
-                    name: productCategory.name,
-                    farmerId: productDetail.farmerId,
-                };
+        return productDetails.map((productDetail) => {
+            const product = {
+                id: productDetail.id,
+                quantity: productDetail.quantity,
+                price: productDetail.pricePerUnit,
+                name: productDetail.productCategory.name,
+                farmerId: productDetail.farmerId,
+            };
 
-                return (
-                    <Product key={product.id} product={product}>
-                        {!orderAccepted ? (
-                            <>
-                                <CustomButton
-                                    text="Accept"
-                                    labelStyle={styles.btn}
-                                    onPress={() => onAccept(product)}
-                                />
-                            </>
-                        ) : (
-                            <>
-                                <CustomButton
-                                    text="Order accepted"
-                                    mode="default"
-                                />
-                                <CustomButton
-                                    mode="default"
-                                    text="Decline"
-                                    labelStyle={styles.declineBtn}
-                                    onPress={() => onDecline(product)}
-                                />
-                            </>
-                        )}
-                    </Product>
-                );
-            })
-        );
+            return (
+                <Product key={product.id} product={product}>
+                    {!orderAccepted ? (
+                        <>
+                            <CustomButton
+                                text="Accept"
+                                labelStyle={styles.btn}
+                                onPress={() => onAccept(product)}
+                            />
+                        </>
+                    ) : (
+                        <>
+                            <CustomButton
+                                text="Order accepted"
+                                mode="default"
+                            />
+                            <CustomButton
+                                mode="default"
+                                text="Decline"
+                                labelStyle={styles.declineBtn}
+                                onPress={() => onDecline(product)}
+                            />
+                        </>
+                    )}
+                </Product>
+            );
+        });
     };
 
     const onAccept = async (product) => {
