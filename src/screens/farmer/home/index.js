@@ -30,10 +30,10 @@ const HomeScreen = () => {
 
     const renderProductDetails = () => {
         return (
-            productCategories.length > 0 &&
+            productCategories!=null && productCategories.length > 0 &&
             productDetails.map((productDetail) => {
                 const productCategory = productCategories.find(
-                    (category) => productDetail.id === category.id,
+                    (category) => productDetail.productCategory.id === category.id,
                 );
 
                 const product = {
